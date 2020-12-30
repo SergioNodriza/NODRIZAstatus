@@ -1,0 +1,32 @@
+App\Entity\Product:
+  attributes:
+    normalization_context:
+      groups: [product_read]
+  collectionOperations:
+    register:
+      method: POST
+      path: /products/create
+      controller: App\Controller\Action\Product\CreateProduct
+      denormalization_context:
+        groups: [product_post]
+      openapi_context:
+        summary: Create a new Product
+    names:
+      method: GET
+      path: /products/names
+      controller: App\Controller\Action\Product\NameProduct
+      deserialize: false
+      openapi_context:
+        summary: Product names
+    get: ~
+
+  itemOperations:
+    get: ~
+    delete: ~
+
+  properties:
+    services:
+      subresource:
+        resourceClass: App\Entity\Service
+        collection: true
+        maxDepth: 1

@@ -1,0 +1,22 @@
+App\Entity\User:
+  attributes:
+    normalization_context:
+      groups: [user_read]
+  collectionOperations:
+    get: ~
+    register:
+      method: POST
+      path: /users/create
+      controller: App\Controller\Action\User\CreateUser
+      denormalization_context:
+        groups: [user_post]
+      openapi_context:
+        summary: Create a new User
+  itemOperations:
+    get: ~
+    put:
+      method: PUT
+      controller: App\Controller\Action\User\CreateUser
+      denormalization_context:
+        groups: [ user_post ]
+    delete: ~

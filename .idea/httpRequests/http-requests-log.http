@@ -1,0 +1,22 @@
+POST http://localhost:350/api/products/create
+Content-Type: application/json
+
+{
+  "name": "PruebaHTTP"
+}
+
+<> 2020-12-30T012112.409.json
+
+###
+
+POST http://localhost:350/api/products/create
+Content-Type: application/json
+
+{
+  "name": "PruebaHTTP"
+}
+
+<> 2020-12-30T011756.409.json
+
+###
+

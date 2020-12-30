@@ -1,0 +1,12 @@
+App\Entity\User:
+  attributes:
+    name:
+      groups: [ user_read, user_post ]
+    password:
+      groups: [ user_read, user_post ]
+    roles:
+      groups: [ user_read, user_post ]
+    createdAt:
+      groups: [ user_read ]
+    updatedAt:
+      groups: [ user_read ]

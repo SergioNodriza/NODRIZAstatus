@@ -1,0 +1,28 @@
+App\Entity\Incident:
+  attributes:
+    normalization_context:
+      groups: [incident_read]
+  collectionOperations:
+    get: ~
+    register:
+      method: POST
+      path: /incidents/create
+      controller: App\Controller\Action\Incident\CreateIncident
+      denormalization_context:
+        groups: [ incident_post ]
+      openapi_context:
+        summary: Create a new Incident
+  itemOperations:
+    get: ~
+    put:
+      method: PUT
+      denormalization_context:
+        groups: [ incident_update ]
+    delete: ~
+
+  properties:
+    services:
+      subresource:
+        resourceClass: App\Entity\Service
+        collection: true
+        maxDepth: 1

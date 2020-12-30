@@ -1,0 +1,14 @@
+App\Entity\Service:
+  attributes:
+    id:
+      groups: [ service_read ]
+    name:
+      groups: [ service_read, service_post, service_update ]
+    state:
+      groups: [ service_read ]
+    createdAt:
+      groups: [ service_read ]
+    updatedAt:
+      groups: [ service_read ]
+    product:
+      groups: [ service_read, service_post ]

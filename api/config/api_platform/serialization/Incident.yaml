@@ -1,0 +1,18 @@
+App\Entity\Incident:
+  attributes:
+    id:
+      groups: [ incident_read ]
+    name:
+      groups: [ incident_read, incident_post, incident_update ]
+    information:
+      groups: [ incident_read, incident_post, incident_update ]
+    state:
+      groups: [ incident_read, incident_post, incident_update ]
+    gravity:
+      groups: [ incident_read, incident_post, incident_update ]
+    services:
+      groups: [ incident_read, incident_post, incident_update ]
+    createdAt:
+      groups: [ incident_read ]
+    updatedAt:
+      groups: [ incident_read ]

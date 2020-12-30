@@ -1,0 +1,30 @@
+<?php //subresource_operations_18a76052dc18edb84620e45071cf3670
+
+return [PHP_INT_MAX, [
+    'api_incidents_services_get_subresource' => [
+        'property' => 'services',
+        'collection' => true,
+        'resource_class' => 'App\\Entity\\Service',
+        'shortNames' => [
+            'Service',
+            'Incident',
+        ],
+        'identifiers' => [
+            [
+                'id',
+                'App\\Entity\\Incident',
+                true,
+            ],
+        ],
+        'operation_name' => 'services_get_subresource',
+        'route_name' => 'api_incidents_services_get_subresource',
+        'path' => '/incidents/{id}/services.{_format}',
+        'defaults' => [],
+        'requirements' => [],
+        'options' => [],
+        'host' => '',
+        'schemes' => [],
+        'condition' => '',
+        'controller' => null,
+    ],
+]];
