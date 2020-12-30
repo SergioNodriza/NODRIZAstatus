@@ -1,0 +1,60 @@
+version: '3.5'
+
+services:
+  nodriza-status-web:
+    container_name: nodriza-status-web
+    build:
+      context: ./docker/nginx
+      args:
+        UID: $U_ID
+    ports:
+      - 350:80
+    volumes:
+      - ./public:/home/sergio/Sites/NODRIZAstatus/public
+    depends_on:
+      - nodriza-status-be
+    networks:
+      - nodriza-status-network
+
+  nodriza-status-be:
+    container_name: nodriza-status-be
+    build:
+      context: docker/php
+      args:
+        UID: $U_ID
+    environment:
+      PHP_IDE_CONFIG: serverName=Docker
+      PHP_XDEBUG_ENABLED: 1
+      XDEBUG_CONFIG: remote_host=172.17.0.1 remote_port=9005
+    volumes:
+      - ./:/home/sergio/Sites/NODRIZAstatus
+      - ./docker/php/xdebug-linux.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ~/.ssh/id_rsa:/home/appuser/.ssh/id_rsa
+    depends_on:
+      - nodriza-status-db
+    networks:
+      - nodriza-status-network
+
+  nodriza-status-db:
+    container_name: nodriza-status-db
+    build:
+      context: ./docker/database
+    ports:
+      - 36000:3306
+    environment:
+      MYSQL_DATABASE: nodriza-status_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+    command: mysqld --sql_mode="STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION"
+    volumes:
+      - nodriza-status-db-data:/var/lib/mysql
+    networks:
+      - nodriza-status-network
+
+volumes:
+  nodriza-status-db-data:
+
+networks:
+  nodriza-status-network:
+    external: true

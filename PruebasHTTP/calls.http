@@ -1,0 +1,63 @@
+###
+POST http://localhost:350/api/products/create
+Content-Type: application/json
+
+{
+  "name": "PruebaHTTP"
+}
+
+###
+
+GET http://localhost:350/api/products/1
+Content-Type: application/json
+
+
+###
+POST http://localhost:350/api/services/create
+Content-Type: application/json
+
+{
+  "name": "PruebaServicio2",
+  "product": "/api/products/1"
+}
+
+###
+
+GET http://localhost:350/api/services/6
+Content-Type: application/json
+
+
+###
+POST http://localhost:350/api/incidences/create
+Content-Type: application/json
+
+{
+  "name": "PruebaIncidencia",
+  "information": "InfoIncidencia",
+  "state": "Estado",
+  "gravity": "Prioridad",
+  "services": [
+    "/api/services/6"
+  ]
+}
+
+###
+GET http://localhost:350/api/incidences/6
+Content-Type: application/json
+
+
+###
+POST http://localhost:350/api/users/create
+Content-Type: application/json
+
+{
+  "name": "PruebaUsuario",
+  "password": "PruebaContraseña",
+  "roles": [
+    "ROLE_PRUEBA"
+  ]
+}
+
+###
+GET http://localhost:350/api/users/2
+Content-Type: application/json
