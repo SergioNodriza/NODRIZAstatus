@@ -28,7 +28,7 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:350/api/incidences/create
+POST http://localhost:350/api/incidents/create
 Content-Type: application/json
 
 {
@@ -42,7 +42,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:350/api/incidences/6
+GET http://localhost:350/api/incidents/6
 Content-Type: application/json
 
 

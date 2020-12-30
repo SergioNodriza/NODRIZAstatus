@@ -110,4 +110,20 @@ class Pruebas extends AbstractController
 
         return (new JsonResponse($nombres));
     }
+
+    /**
+     * @Route("/5", name="pruebas")
+     * @return Response
+     */
+    public function tryRegex(): Response
+    {
+        $password = 'aB3456$';
+        $pattern = "/!@#$%^&*-_/";
+
+        if (strpbrk($pattern, $password)) {
+            return (new Response('Si'));
+        } else {
+            return (new Response('No'));
+        }
+    }
 }

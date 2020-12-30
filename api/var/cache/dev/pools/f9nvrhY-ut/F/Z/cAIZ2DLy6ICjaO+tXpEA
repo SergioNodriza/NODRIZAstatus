@@ -42,10 +42,9 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     ],
                     'put' => [
                         'method' => 'PUT',
-                        'controller' => 'App\\Controller\\Action\\User\\CreateUser',
                         'denormalization_context' => [
                             'groups' => [
-                                'user_post',
+                                'user_update',
                             ],
                         ],
                         'input' => null,

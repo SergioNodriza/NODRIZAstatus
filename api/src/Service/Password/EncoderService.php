@@ -20,8 +20,27 @@ class EncoderService
     public function generateEncodedPassword(UserInterface $user, string $password)
     {
         if (self::MINIMUM_LENGTH > \strlen($password)) {
-            throw PasswordException::invalidLength();
+            throw PasswordException::invalidLength(self::MINIMUM_LENGTH);
         }
+
+        if (!preg_match('`[a-z]`',$password)) {
+            throw PasswordException::invalidCharset('lowercase');
+        }
+
+        if (!preg_match('`[A-Z]`',$password)) {
+            throw PasswordException::invalidCharset('uppercase');
+        }
+
+        if(!preg_match('/\d/', $password)) {
+            throw PasswordException::invalidCharset('number');
+        }
+
+        $pattern = "/!@#$%^&*-_/";
+        if (!strpbrk($pattern, $password)) {
+            throw PasswordException::invalidCharset('special character');
+        }
+
+
 
         return $this->userPasswordEncoder->encodePassword($user, $password);
     }

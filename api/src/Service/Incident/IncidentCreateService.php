@@ -23,7 +23,7 @@ class IncidentCreateService
             $this->entityManager->persist($incident);
             $this->entityManager->flush();
         } catch (Exception $exception) {
-            AlreadyExistsException::from('Incidence', $incident->getName());
+            AlreadyExistsException::from('Incident', $incident->getName());
         }
 
         return $incident;

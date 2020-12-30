@@ -13,7 +13,7 @@ return [
         '/_profiler/search_bar' => [[['_route' => '_profiler_search_bar', '_controller' => 'web_profiler.controller.profiler::searchBarAction'], null, null, null, false, false, null]],
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
-        '/4' => [[['_route' => 'pruebas', '_controller' => 'App\\Controller\\Action\\Pruebas::tryJson'], null, null, null, false, false, null]],
+        '/5' => [[['_route' => 'pruebas', '_controller' => 'App\\Controller\\Action\\Pruebas::tryRegex'], null, null, null, false, false, null]],
         '/api/incidents/create' => [[['_route' => 'api_incidents_register_collection', '_controller' => 'App\\Controller\\Action\\Incident\\CreateIncident', '_format' => null, '_api_resource_class' => 'App\\Entity\\Incident', '_api_collection_operation_name' => 'register'], null, ['POST' => 0], null, false, false, null]],
         '/api/users/create' => [[['_route' => 'api_users_register_collection', '_controller' => 'App\\Controller\\Action\\User\\CreateUser', '_format' => null, '_api_resource_class' => 'App\\Entity\\User', '_api_collection_operation_name' => 'register'], null, ['POST' => 0], null, false, false, null]],
         '/api/products/create' => [[['_route' => 'api_products_register_collection', '_controller' => 'App\\Controller\\Action\\Product\\CreateProduct', '_format' => null, '_api_resource_class' => 'App\\Entity\\Product', '_api_collection_operation_name' => 'register'], null, ['POST' => 0], null, false, false, null]],
@@ -97,7 +97,7 @@ return [
         420 => [[['_route' => 'api_users_get_collection', '_controller' => 'api_platform.action.get_collection', '_format' => null, '_api_resource_class' => 'App\\Entity\\User', '_api_collection_operation_name' => 'get'], ['_format'], ['GET' => 0], null, false, true, null]],
         457 => [
             [['_route' => 'api_users_get_item', '_controller' => 'api_platform.action.get_item', '_format' => null, '_api_resource_class' => 'App\\Entity\\User', '_api_item_operation_name' => 'get'], ['id', '_format'], ['GET' => 0], null, false, true, null],
-            [['_route' => 'api_users_put_item', '_controller' => 'App\\Controller\\Action\\User\\CreateUser', '_format' => null, '_api_resource_class' => 'App\\Entity\\User', '_api_item_operation_name' => 'put'], ['id', '_format'], ['PUT' => 0], null, false, true, null],
+            [['_route' => 'api_users_put_item', '_controller' => 'api_platform.action.put_item', '_format' => null, '_api_resource_class' => 'App\\Entity\\User', '_api_item_operation_name' => 'put'], ['id', '_format'], ['PUT' => 0], null, false, true, null],
             [['_route' => 'api_users_delete_item', '_controller' => 'api_platform.action.delete_item', '_format' => null, '_api_resource_class' => 'App\\Entity\\User', '_api_item_operation_name' => 'delete'], ['id', '_format'], ['DELETE' => 0], null, false, true, null],
         ],
         493 => [[['_route' => 'api_products_get_collection', '_controller' => 'api_platform.action.get_collection', '_format' => null, '_api_resource_class' => 'App\\Entity\\Product', '_api_collection_operation_name' => 'get'], ['_format'], ['GET' => 0], null, false, true, null]],

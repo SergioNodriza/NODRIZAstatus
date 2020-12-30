@@ -257,6 +257,7 @@ return [[
                     2 => [
                         'user_read',
                         'user_post',
+                        'user_update',
                     ],
                     [
                         'user_read',
@@ -265,6 +266,7 @@ return [[
                     [
                         'user_read',
                         'user_post',
+                        'user_update',
                     ],
                     [
                         'user_read',

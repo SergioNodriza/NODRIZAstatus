@@ -16,7 +16,6 @@ App\Entity\User:
     get: ~
     put:
       method: PUT
-      controller: App\Controller\Action\User\CreateUser
       denormalization_context:
-        groups: [ user_post ]
+        groups: [ user_update ]
     delete: ~
