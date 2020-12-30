@@ -1,1 +1,0 @@
-{"class":"App\\Exceptions\\AlreadyExistsException","code":409,"message":"Product PruebaHTTP already exist"}
