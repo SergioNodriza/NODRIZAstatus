@@ -38,7 +38,6 @@ class Service
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="services")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $product;
 
@@ -83,12 +82,12 @@ class Service
         return $this;
     }
 
-    public function getProduct(): ?Product
+    public function getProduct(): Product
     {
         return $this->product;
     }
 
-    public function setProduct(?Product $product): self
+    public function setProduct(Product $product): self
     {
         $this->product = $product;
 

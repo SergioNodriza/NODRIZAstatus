@@ -139,6 +139,39 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                             ],
                         ],
                     ],
+                    'generalState' => [
+                        'method' => 'GET',
+                        'path' => '/products/general',
+                        'controller' => 'App\\Controller\\Action\\Product\\GeneralState',
+                        'deserialize' => false,
+                        'openapi_context' => [
+                            'summary' => 'Nodriza\'s General State',
+                        ],
+                        'input' => null,
+                        'output' => null,
+                        'input_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                    ],
                     'get' => [
                         'method' => 'GET',
                         'input_formats' => [

@@ -21,3 +21,11 @@ services:
     App\Controller\Listener\JsonExceptionResponseTransformerListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 100}
+
+    App\Controller\Listener\IncidentNotifier:
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate, priority: 100 }
+
+    App\Controller\Listener\ServiceNotifier:
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate, priority: 100 }

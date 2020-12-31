@@ -444,6 +444,10 @@
       <tag name="controller.service_arguments"/>
       <argument type="service" id="App\Service\Product\ProductCreateService"/>
     </service>
+    <service id="App\Controller\Action\Product\GeneralState" class="App\Controller\Action\Product\GeneralState" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <argument type="service" id="App\Service\Product\GeneralStateService"/>
+    </service>
     <service id="App\Controller\Action\Product\NameProduct" class="App\Controller\Action\Product\NameProduct" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <argument type="service" id="App\Service\Product\ProductNameService"/>
@@ -466,8 +470,16 @@
       <tag name="controller.service_arguments"/>
       <argument type="service" id="App\Service\User\UserCreateService"/>
     </service>
+    <service id="App\Controller\Listener\IncidentNotifier" class="App\Controller\Listener\IncidentNotifier" autowire="true" autoconfigure="true">
+      <tag name="doctrine.event_listener" event="postUpdate" priority="100"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
     <service id="App\Controller\Listener\JsonExceptionResponseTransformerListener" class="App\Controller\Listener\JsonExceptionResponseTransformerListener" autowire="true" autoconfigure="true">
       <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" priority="100"/>
+    </service>
+    <service id="App\Controller\Listener\ServiceNotifier" class="App\Controller\Listener\ServiceNotifier" autowire="true" autoconfigure="true">
+      <tag name="doctrine.event_listener" event="postUpdate" priority="100"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
     <service id="App\Exceptions\AlreadyExistsException" class="App\Exceptions\AlreadyExistsException" autowire="true" autoconfigure="true"/>
     <service id="App\Exceptions\PasswordException" class="App\Exceptions\PasswordException" autowire="true" autoconfigure="true"/>
@@ -492,6 +504,9 @@
     </service>
     <service id="App\Service\Password\EncoderService" class="App\Service\Password\EncoderService" autowire="true" autoconfigure="true">
       <argument type="service" id="security.user_password_encoder.generic"/>
+    </service>
+    <service id="App\Service\Product\GeneralStateService" class="App\Service\Product\GeneralStateService" autowire="true" autoconfigure="true">
+      <argument type="service" id="App\Repository\ProductRepository"/>
     </service>
     <service id="App\Service\Product\ProductCreateService" class="App\Service\Product\ProductCreateService" autowire="true" autoconfigure="true">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
@@ -3386,9 +3401,21 @@
       </argument>
     </service>
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager">
-      <argument type="service" id=".service_locator.vhzPeUU"/>
+      <argument type="service" id=".service_locator.FwARCgz"/>
       <call method="addEventSubscriber">
         <argument type="service" id="doctrine.orm.listeners.pdo_cache_adapter_doctrine_schema_subscriber"/>
+      </call>
+      <call method="addEventListener">
+        <argument type="collection">
+          <argument>postUpdate</argument>
+        </argument>
+        <argument>App\Controller\Listener\IncidentNotifier</argument>
+      </call>
+      <call method="addEventListener">
+        <argument type="collection">
+          <argument>postUpdate</argument>
+        </argument>
+        <argument>App\Controller\Listener\ServiceNotifier</argument>
       </call>
       <call method="addEventListener">
         <argument type="collection">
@@ -5287,9 +5314,11 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.vhzPeUU" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.FwARCgz" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\Listener\IncidentNotifier" type="service" id="App\Controller\Listener\IncidentNotifier"/>
+        <argument key="App\Controller\Listener\ServiceNotifier" type="service" id="App\Controller\Listener\ServiceNotifier"/>
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>

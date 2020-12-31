@@ -38,7 +38,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 1 => 'object',
             ],
             'nullable' => [
-                1 => false,
+                1 => true,
             ],
             'class' => [
                 1 => 'App\\Entity\\Product',

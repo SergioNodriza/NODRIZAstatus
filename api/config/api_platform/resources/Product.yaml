@@ -18,6 +18,13 @@ App\Entity\Product:
       deserialize: false
       openapi_context:
         summary: Product names
+    generalState:
+      method: GET
+      path: /products/general
+      controller: App\Controller\Action\Product\GeneralState
+      deserialize: false
+      openapi_context:
+        summary: Nodriza's General State
     get: ~
 
   itemOperations:
