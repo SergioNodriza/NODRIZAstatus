@@ -5,14 +5,16 @@ namespace App\Controller\Listener;
 
 
 use App\Entity\Service;
+use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
-class ServiceNotifier
+class ServiceNotifier implements EventSubscriber
 {
     private const State1 = "Funcional";
     private const State2 = "Error";
-    private const State3 = "Advertencias Medias";
+    private const State3 = "Advertencias";
     private const State4 = "Advertencias Leves";
 
     private EntityManagerInterface $entityManager;
@@ -22,7 +24,25 @@ class ServiceNotifier
         $this->entityManager = $entityManager;
     }
 
+    public function getSubscribedEvents(): array
+    {
+        return [
+            Events::prePersist,
+            Events::postUpdate,
+        ];
+    }
+
+    public function prePersist(LifecycleEventArgs $event): void
+    {
+        $this->action($event);
+    }
+
     public function postUpdate(LifecycleEventArgs $event): void
+    {
+        $this->action($event);
+    }
+
+    public function action(LifecycleEventArgs $event): void
     {
         $serviceUpdated = $event->getObject();
 

@@ -5,10 +5,12 @@ namespace App\Controller\Listener;
 
 
 use App\Entity\Incident;
+use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
-class IncidentNotifier
+class IncidentNotifier implements EventSubscriber
 {
     private const IncidentState1 = "En investigación";
     private const IncidentState2 = "Trabajando en ello";
@@ -19,7 +21,7 @@ class IncidentNotifier
 
     private const State1 = "Funcional";
     private const State2 = "Error";
-    private const State3 = "Advertencias Medias";
+    private const State3 = "Advertencias";
     private const State4 = "Advertencias Leves";
 
     private const LimitNumberBajas= 4;
@@ -32,7 +34,25 @@ class IncidentNotifier
         $this->entityManager = $entityManager;
     }
 
+    public function getSubscribedEvents(): array
+    {
+        return [
+            Events::prePersist,
+            Events::postUpdate,
+        ];
+    }
+
+    public function prePersist(LifecycleEventArgs $event): void
+    {
+        $this->action($event);
+    }
+
     public function postUpdate(LifecycleEventArgs $event): void
+    {
+        $this->action($event);
+    }
+
+    public function action(LifecycleEventArgs $event): void
     {
         $incidentUpdated = $event->getObject();
 
@@ -79,7 +99,7 @@ class IncidentNotifier
                 $service->setState(self::State1);
             } elseif ($countOpenIncidentsCritica > 0) {
                 $service->setState(self::State2);
-            } elseif ($countOpenIncidentsMedia > self::LimitNumberMedias || $countOpenIncidentsBaja > self::LimitNumberBajas) {
+            } elseif ($countOpenIncidentsMedia >= self::LimitNumberMedias || $countOpenIncidentsBaja >= self::LimitNumberBajas) {
                 $service->setState(self::State3);
             } else {
                 $service->setState(self::State4);

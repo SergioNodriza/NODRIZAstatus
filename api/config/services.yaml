@@ -24,8 +24,8 @@ services:
 
     App\Controller\Listener\IncidentNotifier:
         tags:
-            - { name: doctrine.event_listener, event: postUpdate, priority: 100 }
+            - { name: 'doctrine.event_subscriber' }
 
     App\Controller\Listener\ServiceNotifier:
         tags:
-            - { name: doctrine.event_listener, event: postUpdate, priority: 100 }
+            - { name: 'doctrine.event_subscriber' }

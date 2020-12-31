@@ -12,7 +12,7 @@ class GeneralStateService
 
     private const State1 = "Funcional";
     private const State2 = "Error";
-    private const State3 = "Advertencias Medias";
+    private const State3 = "Advertencias";
     private const State4 = "Advertencias Leves";
 
 
