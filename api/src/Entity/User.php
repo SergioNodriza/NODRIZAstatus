@@ -21,8 +21,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $id;
 
@@ -56,7 +55,7 @@ class User implements UserInterface
         $this->id = Uuid::v4()->toRfc4122();
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }

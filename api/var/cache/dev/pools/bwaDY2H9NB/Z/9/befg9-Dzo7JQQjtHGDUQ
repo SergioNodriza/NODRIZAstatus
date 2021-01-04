@@ -29,7 +29,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         ],
         'Symfony\\Component\\PropertyInfo\\Type' => [
             'builtinType' => [
-                1 => 'int',
+                1 => 'string',
             ],
             'nullable' => [
                 1 => false,

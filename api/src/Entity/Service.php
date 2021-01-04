@@ -15,14 +15,13 @@ use Symfony\Component\Uid\Uuid;
 class Service
 {
     /*
-         * Timestampable trait
-         */
+     * Timestampable trait
+     */
     use Timestampable;
 
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $id;
 
@@ -53,7 +52,7 @@ class Service
         $this->incidents = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }

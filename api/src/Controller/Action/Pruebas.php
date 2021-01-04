@@ -6,6 +6,7 @@ namespace App\Controller\Action;
 use App\Entity\Service;
 use App\Entity\User;
 use App\Repository\ProductRepository;
+use App\Repository\UserRepository;
 use App\Service\Password\EncoderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,12 +19,15 @@ class Pruebas extends AbstractController
     private EntityManagerInterface $entityManager;
     private ProductRepository $productRepository;
     private EncoderService $encoderService;
+    private UserRepository $userRepository;
 
-    public function __construct(EntityManagerInterface $entityManager, ProductRepository $productRepository, EncoderService $encoderService)
+    public function __construct(EntityManagerInterface $entityManager, ProductRepository $productRepository, EncoderService $encoderService,
+                                UserRepository $userRepository)
     {
         $this->entityManager = $entityManager;
         $this->productRepository = $productRepository;
         $this->encoderService = $encoderService;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -125,5 +129,33 @@ class Pruebas extends AbstractController
         } else {
             return (new Response('No'));
         }
+    }
+
+    /**
+     * @Route("/6", name="pruebas")
+     * @return Response
+     */
+    public function tryArray(): Response
+    {
+        $info = array(
+            "sign" => "+",
+            "state" => "estado",
+        );
+
+        //$info = array();
+
+        return (new Response($info['sign']));
+    }
+
+    /**
+     * @Route("/7", name="pruebas")
+     * @return Response
+     */
+    public function tryUuid(): Response
+    {
+        $user = $this->userRepository->findOneBy(['id' => '4e3e6c60-a9ed-4f54-8d6b-9f48d9bbbfb5']);
+        $id = $user->getId();
+
+        return (new Response($id));
     }
 }

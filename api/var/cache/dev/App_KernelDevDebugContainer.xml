@@ -458,6 +458,7 @@
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
       <argument type="service" id="App\Repository\ProductRepository"/>
       <argument type="service" id="App\Service\Password\EncoderService"/>
+      <argument type="service" id="App\Repository\UserRepository"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.5nX7ca3.App\Controller\Action\Pruebas"/>
       </call>
@@ -470,14 +471,14 @@
       <tag name="controller.service_arguments"/>
       <argument type="service" id="App\Service\User\UserCreateService"/>
     </service>
-    <service id="App\Controller\Listener\IncidentNotifier" class="App\Controller\Listener\IncidentNotifier" autowire="true" autoconfigure="true">
-      <tag name="doctrine.event_subscriber"/>
-      <argument type="service" id="doctrine.orm.default_entity_manager"/>
-    </service>
     <service id="App\Controller\Listener\JsonExceptionResponseTransformerListener" class="App\Controller\Listener\JsonExceptionResponseTransformerListener" autowire="true" autoconfigure="true">
       <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" priority="100"/>
     </service>
-    <service id="App\Controller\Listener\ServiceNotifier" class="App\Controller\Listener\ServiceNotifier" autowire="true" autoconfigure="true">
+    <service id="App\Controller\Listener\Subscribers\IncidentNotifier" class="App\Controller\Listener\Subscribers\IncidentNotifier" autowire="true" autoconfigure="true">
+      <tag name="doctrine.event_subscriber"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="App\Controller\Listener\Subscribers\ServiceNotifier" class="App\Controller\Listener\Subscribers\ServiceNotifier" autowire="true" autoconfigure="true">
       <tag name="doctrine.event_subscriber"/>
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
@@ -3403,10 +3404,10 @@
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager">
       <argument type="service" id=".service_locator.vhzPeUU"/>
       <call method="addEventSubscriber">
-        <argument type="service" id="App\Controller\Listener\IncidentNotifier"/>
+        <argument type="service" id="App\Controller\Listener\Subscribers\IncidentNotifier"/>
       </call>
       <call method="addEventSubscriber">
-        <argument type="service" id="App\Controller\Listener\ServiceNotifier"/>
+        <argument type="service" id="App\Controller\Listener\Subscribers\ServiceNotifier"/>
       </call>
       <call method="addEventSubscriber">
         <argument type="service" id="doctrine.orm.listeners.pdo_cache_adapter_doctrine_schema_subscriber"/>

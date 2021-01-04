@@ -22,10 +22,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 100}
 
-    App\Controller\Listener\IncidentNotifier:
+    App\Controller\Listener\Subscribers\IncidentNotifier:
         tags:
             - { name: 'doctrine.event_subscriber' }
 
-    App\Controller\Listener\ServiceNotifier:
+    App\Controller\Listener\Subscribers\ServiceNotifier:
         tags:
             - { name: 'doctrine.event_subscriber' }
