@@ -4,16 +4,87 @@ security:
             algorithm: auto
 
     providers:
-        users_in_memory: { memory: null }
+        #users_in_memory: { memory: null }
+        user_provider:
+            id: App\Security\Core\User\UserProvider
+
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+        #        dev:
+        #            pattern: ^/(_(profiler|wdt)|css|images|js)/
+        #            security: false
+        #        main:
+        #            anonymous: true
+        #            lazy: true
+        #            provider: users_in_memory
+        getProducts:
+            pattern: ^/api/products$
+            methods: [ GET ]
             security: false
-        main:
+
+        getProductsId:
+            pattern: ^/api/products/.*
+            methods: [ GET ]
+            security: false
+
+        getProductsGeneral:
+            pattern: ^/api/products/general
+            methods: [ GET ]
+            security: false
+
+        getProductsNames:
+            pattern: ^/api/products/names
+            methods: [ GET ]
+            security: false
+
+        getServices:
+            pattern: ^/api/services$
+            methods: [ GET ]
+            security: false
+
+        getServicesId:
+            pattern: ^/api/services/.*
+            methods: [ GET ]
+            security: false
+
+        getIncidents:
+            pattern: ^/api/incidents$
+            methods: [ GET ]
+            security: false
+
+        getIncidentsId:
+            pattern: ^/api/incidents/.*
+            methods: [ GET ]
+            security: false
+
+        getProductsIdServices:
+            pattern: ^/api/products/.*/services
+            methods: [ GET ]
+            security: false
+
+        getIncidentsIdServices:
+            pattern: ^/api/incidents/.*/services
+            methods: [ GET ]
+            security: false
+
+        login:
+            pattern: /api/users/login
+            stateless: true
             anonymous: true
-            lazy: true
-            provider: users_in_memory
+            provider: user_provider
+            json_login:
+                check_path: /api/users/login
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+                require_previous_session: false
+
+        api:
+            pattern: ^/api/
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
 
     access_control:
-    # - { path: ^/admin, roles: ROLE_ADMIN }
-    # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
+#        - { path: ^/admin, roles: ROLE_ADMIN }
+#        - { path: ^/profile, roles: ROLE_USER }

@@ -17,6 +17,10 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 [
                     'get' => [
                         'method' => 'GET',
+                        'security' => 'is_granted("USER_READ")',
+                        'security_message' => 'Wrong Permissions, You can not get an User',
+                        'input' => null,
+                        'output' => null,
                         'input_formats' => [
                             'jsonld' => [
                                 'application/ld+json',
@@ -42,6 +46,8 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     ],
                     'put' => [
                         'method' => 'PUT',
+                        'security' => 'is_granted("USER_UPDATE")',
+                        'security_message' => 'Wrong Permissions, You can not update an User',
                         'denormalization_context' => [
                             'groups' => [
                                 'user_update',
@@ -74,6 +80,10 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     ],
                     'delete' => [
                         'method' => 'DELETE',
+                        'security' => 'is_granted("USER_DELETE")',
+                        'security_message' => 'Wrong Permissions, You can not delete an User',
+                        'input' => null,
+                        'output' => null,
                         'input_formats' => [
                             'jsonld' => [
                                 'application/ld+json',
@@ -135,8 +145,75 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                                 'user_post',
                             ],
                         ],
+                        'security_post_denormalize' => 'is_granted("USER_CREATE", object)',
+                        'security_post_denormalize_message' => 'Wrong Permissions, You can not register an User',
                         'openapi_context' => [
                             'summary' => 'Create a new User',
+                        ],
+                        'input' => null,
+                        'output' => null,
+                        'input_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                    ],
+                    'login' => [
+                        'method' => 'POST',
+                        'path' => '/api/users/login',
+                        'openapi_context' => [
+                            'summary' => 'Login a User',
+                            'requestBody' => [
+                                'content' => [
+                                    'application/json' => [
+                                        'schema' => [
+                                            'type' => 'object',
+                                            'properties' => [
+                                                'username' => [
+                                                    'type' => 'string',
+                                                ],
+                                                'password' => [
+                                                    'type' => 'string',
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                            'responses' => [
+                                200 => [
+                                    'description' => 'OK',
+                                    'content' => [
+                                        'application/json' => [
+                                            'schema' => [
+                                                'type' => 'object',
+                                                'properties' => [
+                                                    'token' => [
+                                                        'type' => 'string',
+                                                    ],
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
                         ],
                         'input' => null,
                         'output' => null,

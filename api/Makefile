@@ -49,5 +49,5 @@ ssh-be: ## ssh's into the be container
 
 generate-ssh-keys: ## Generates SSH keys for the JWT library
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} mkdir -p config/jwt
-	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} openssl genrsa -passout pass:f8467974ddd108823dd947cd350c1f8e -out config/jwt/private.pem -aes256 4096
-	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} openssl rsa -pubout -passin pass:f8467974ddd108823dd947cd350c1f8e -in config/jwt/private.pem -out config/jwt/public.pem
+	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} openssl genrsa -passout pass:aa27b346c78f3dace3fd91da94b1e995 -out config/jwt/private.pem -aes256 4096
+	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} openssl rsa -pubout -passin pass:aa27b346c78f3dace3fd91da94b1e995 -in config/jwt/private.pem -out config/jwt/public.pem

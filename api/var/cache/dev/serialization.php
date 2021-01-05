@@ -254,7 +254,10 @@ return [[
                     ],
                 ],
                 'groups' => [
-                    2 => [
+                    1 => [
+                        'user_read',
+                    ],
+                    [
                         'user_read',
                         'user_post',
                         'user_update',

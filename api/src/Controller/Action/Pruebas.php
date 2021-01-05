@@ -158,4 +158,71 @@ class Pruebas extends AbstractController
 
         return (new Response($id));
     }
+
+    /**
+     * @Route("/8", name="pruebas")
+     * @return Response
+     */
+    public function tryRoles(): Response
+    {
+        $rolesArray = [
+            "ROLE_1",
+            "ROLE_2",
+            "ROLE_ADMIN"
+        ];
+
+        $count = 0;
+
+        $user = $this->userRepository->findOneBy(['id' => '184a312c-ff1f-4fcf-b2e9-d09938f217df']);
+        $roles = $user->getRoles();
+
+        foreach ($roles as $role) {
+
+            if (in_array($role, $rolesArray, true)) {
+                $count++;
+            }
+        }
+
+        return (new Response($count));
+    }
+
+    /**
+     * @Route("/9", name="pruebas")
+     * @return Response
+     */
+    public function tryRoles2(): Response
+    {
+        $user = $this->userRepository->findOneBy(['id' => '184a312c-ff1f-4fcf-b2e9-d09938f217df']);
+        $roles = $user->getRoles();
+
+        $bool = in_array("ROLE_ADMIN", $roles, true);
+        return (new Response($bool));
+    }
+
+    /**
+     * @Route("/10", name="pruebas")
+     * @return Response
+     */
+    public function tryRoles3(): Response
+    {
+        $rol = "ROLE_EMPRESA_1";
+
+        if (str_starts_with($rol, "ROLE_EMPRESA_")) {
+            $rol = "ROL_EMPRESA_";
+        }
+
+        switch($rol) {
+            case "ADMIN":
+                $permissions = 1;
+                break;
+            case "ROL_EMPRESA_":
+                $permissions = 2;
+                break;
+            default:
+                $permissions = 0;
+                break;
+        }
+
+        return (new Response($permissions));
+    }
 }

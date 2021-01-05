@@ -1,5 +1,7 @@
 App\Entity\User:
   attributes:
+    id:
+      groups: [ user_read ]
     name:
       groups: [ user_read, user_post, user_update ]
     password:

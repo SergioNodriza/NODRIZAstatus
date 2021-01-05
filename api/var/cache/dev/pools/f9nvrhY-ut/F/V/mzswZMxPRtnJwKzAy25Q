@@ -42,6 +42,10 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     ],
                     'delete' => [
                         'method' => 'DELETE',
+                        'security' => 'is_granted("PRODUCT_DELETE")',
+                        'security_message' => 'Wrong Permissions, You can not delete a Product',
+                        'input' => null,
+                        'output' => null,
                         'input_formats' => [
                             'jsonld' => [
                                 'application/ld+json',
@@ -78,6 +82,8 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                                 'product_post',
                             ],
                         ],
+                        'security_post_denormalize' => 'is_granted("PRODUCT_CREATE", object)',
+                        'security_post_denormalize_message' => 'Wrong Permissions, You can not create a Product',
                         'openapi_context' => [
                             'summary' => 'Create a new Product',
                         ],

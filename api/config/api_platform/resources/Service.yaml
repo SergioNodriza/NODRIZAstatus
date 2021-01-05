@@ -10,18 +10,28 @@ App\Entity\Service:
       controller: App\Controller\Action\Service\CreateService
       denormalization_context:
         groups: [service_post]
+      security_post_denormalize: is_granted("SERVICE_CREATE", object)
+      security_post_denormalize_message: 'Wrong Permissions, You can not create a Service'
       openapi_context:
         summary: Create a new Service
+
   itemOperations:
     get: ~
+
     put:
       method: PUT
+      security: is_granted("SERVICE_UPDATE")
+      security_message: 'Wrong Permissions, You can not update a Service'
       denormalization_context:
         groups: [ service_update ]
-    delete: ~
+
+    delete:
+      method: DELETE
+      security: is_granted("SERVICE_DELETE")
+      security_message: 'Wrong Permissions, You can not delete a Service'
 
   properties:
-    incidencts:
+    incidents:
       subresource:
         resourceClass: App\Entity\Incident
         collection: true

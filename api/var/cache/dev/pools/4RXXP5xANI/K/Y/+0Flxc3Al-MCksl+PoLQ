@@ -1,0 +1,3 @@
+<?php //route_name_f4383ca9a49b04ab0523765c27edbc44
+
+return [PHP_INT_MAX, 'api_services_get_collection'];

@@ -9,8 +9,11 @@ App\Entity\Product:
       controller: App\Controller\Action\Product\CreateProduct
       denormalization_context:
         groups: [product_post]
+      security_post_denormalize: is_granted("PRODUCT_CREATE", object)
+      security_post_denormalize_message: 'Wrong Permissions, You can not create a Product'
       openapi_context:
         summary: Create a new Product
+
     names:
       method: GET
       path: /products/names
@@ -18,6 +21,7 @@ App\Entity\Product:
       deserialize: false
       openapi_context:
         summary: Product names
+
     generalState:
       method: GET
       path: /products/general
@@ -25,11 +29,16 @@ App\Entity\Product:
       deserialize: false
       openapi_context:
         summary: Nodriza's General State
+
     get: ~
 
   itemOperations:
     get: ~
-    delete: ~
+
+    delete:
+      method: DELETE
+      security: is_granted("PRODUCT_DELETE")
+      security_message: 'Wrong Permissions, You can not delete a Product'
 
   properties:
     services:

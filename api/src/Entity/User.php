@@ -15,8 +15,8 @@ use Symfony\Component\Uid\Uuid;
 class User implements UserInterface
 {
     /*
-        * Timestampable trait
-        */
+    * Timestampable trait
+    */
     use Timestampable;
 
     /**
@@ -98,7 +98,7 @@ class User implements UserInterface
 
     public function addRoles(string $rol): void
     {
-        if (in_array($rol, $this->roles)) {
+        if (in_array($rol, $this->roles, true)) {
             return;
         }
         $this->roles[] = $rol;
@@ -111,7 +111,7 @@ class User implements UserInterface
 
     public function getUsername()
     {
-        $this->getName();
+        return $this->name;
     }
 
     public function eraseCredentials()

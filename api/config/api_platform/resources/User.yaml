@@ -4,18 +4,58 @@ App\Entity\User:
       groups: [user_read]
   collectionOperations:
     get: ~
+
     register:
       method: POST
       path: /users/create
       controller: App\Controller\Action\User\CreateUser
       denormalization_context:
         groups: [user_post]
+      security_post_denormalize: is_granted("USER_CREATE", object)
+      security_post_denormalize_message: 'Wrong Permissions, You can not register an User'
       openapi_context:
         summary: Create a new User
+
+    login:
+      method: POST
+      path: /api/users/login
+      openapi_context:
+        summary: Login a User
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  password:
+                    type: string
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    token:
+                      type: string
+
   itemOperations:
-    get: ~
+    get:
+      method: GET
+      security: is_granted("USER_READ")
+      security_message: 'Wrong Permissions, You can not get an User'
+
     put:
       method: PUT
+      security: is_granted("USER_UPDATE")
+      security_message: 'Wrong Permissions, You can not update an User'
       denormalization_context:
         groups: [ user_update ]
-    delete: ~
+
+    delete:
+      method: DELETE
+      security: is_granted("USER_DELETE")
+      security_message: 'Wrong Permissions, You can not delete an User'
