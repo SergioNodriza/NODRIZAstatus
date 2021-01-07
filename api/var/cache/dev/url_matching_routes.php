@@ -13,7 +13,7 @@ return [
         '/_profiler/search_bar' => [[['_route' => '_profiler_search_bar', '_controller' => 'web_profiler.controller.profiler::searchBarAction'], null, null, null, false, false, null]],
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
-        '/10' => [[['_route' => 'pruebas', '_controller' => 'App\\Controller\\Action\\Pruebas::tryRoles3'], null, null, null, false, false, null]],
+        '/11' => [[['_route' => 'pruebas', '_controller' => 'App\\Controller\\Action\\Pruebas::tryException'], null, null, null, false, false, null]],
         '/api/incidents/create' => [[['_route' => 'api_incidents_register_collection', '_controller' => 'App\\Controller\\Action\\Incident\\CreateIncident', '_format' => null, '_api_resource_class' => 'App\\Entity\\Incident', '_api_collection_operation_name' => 'register'], null, ['POST' => 0], null, false, false, null]],
         '/api/users/create' => [[['_route' => 'api_users_register_collection', '_controller' => 'App\\Controller\\Action\\User\\CreateUser', '_format' => null, '_api_resource_class' => 'App\\Entity\\User', '_api_collection_operation_name' => 'register'], null, ['POST' => 0], null, false, false, null]],
         '/api/api/users/login' => [[['_route' => 'api_users_login_collection', '_controller' => 'api_platform.action.post_collection', '_format' => null, '_api_resource_class' => 'App\\Entity\\User', '_api_collection_operation_name' => 'login'], null, ['POST' => 0], null, false, false, null]],

@@ -39,7 +39,11 @@ class IncidentVoter extends Voter
         $roles = $token->getRoleNames();
         $permissions = $this->rolesService->checkPermissions($roles);
 
-        return in_array($attribute, $permissions['incident'], true);
+        try {
+            return in_array($attribute, $permissions['incident'], true);
+        }  catch (\Exception $exception) {
+            return false;
+        }
     }
 
     private function supportedAttributes(): array

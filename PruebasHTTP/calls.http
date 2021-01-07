@@ -8,7 +8,7 @@ Content-Type: application/json
   "name": "PruebaUsuario2",
   "password": "PruebaContraseña2!",
   "roles": [
-    "ROLE_PRUEBA"
+    "ROLE_EMPRESA_Tuup"
   ]
 }
 
@@ -28,28 +28,21 @@ GET http://localhost:350/api/users/login
 Content-Type: application/json
 
 {
-  "username": "PruebaUsuario",
-  "password": "PruebaContraseña1!"
+  "username": "PruebaUsuario2",
+  "password": "PruebaContraseña2!"
 }
 
-######################## Error de permisos ################################
+####################
 
 GET http://localhost:350/api/users/184a312c-ff1f-4fcf-b2e9-d09938f217df
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NDA3NTIsImV4cCI6MTYxNTAyNDc1MiwidXNlcm5hbWUiOiJQcnVlYmFVc3VhcmlvIiwiaWQiOiI1MzkxNjgyZC01MzI3LTRmMDUtYjAxZi04ZDI5NGQzMDk2OTQifQ.gX-X0pjmowOcs8Wo0ivV9G2t4ACfImsXfW4GAgTLjXodt9Qr3GskwiNksDy-ORQNZvCisAytEje6PfUm9-HzLmLBn1wO0CwKfufPlaghBlz4T-hCLOXgQkNIHjFPgf_oZC0ukCUNxsQMQ5O6QQnG0dVRP_VMXU_grK4-4LWhMYJ5NSnhjAE2WycFm5-bPnDqAihBMIqG8skak_FQgEpAjGOwoRK1oVGVPZfes22y3HT5EVdau8xl0Bi0sMX8fUQTPb84F8cU5Sk7NTr_hw4F_5RLL23Wwm5lgS9ib56lO-H7uf7eLA93yfgrfv03dsMIxmKU9W-GftG7puc9EfTBpDmzPUoXxmikJiiqdFT0TdTJW-MwCOv1PMy_ycZaP4HPFpM_mo-CdltmqKjbhz1jM6hdVYaDExLOwRX6jvohdj1r6UC2R7XeM0Fv2K6VkCqNHqpF5aISYwG-1h3cRm2mTJCj38M4kWGgGuSnVx12eJqmLBI9DsW29F4On6nGoBXaWT_oqGO2uRw1lpZTjqVtAKJcswVT7fQwuFrD48NcEncyF6y9gMsY7RWtjeyVzWqvEWjPItf7BPPmLwwnng7Xhmas9nRuO_0ko_hSwzdXLkpWHvDRNx9BR6wpu-tAPB5h2osIp_46_4cqwWpc-x8B3mosFmr012uM_mZtbHWOX4w
-############################ Correcto #####################################
-
-GET http://localhost:350/api/users/184a312c-ff1f-4fcf-b2e9-d09938f217df
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4MzQ3MTgsImV4cCI6MTYxNTAxODcxOCwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.Q608PyjMEi4gBInCXmJtgspRgTzlbLnxTz5eUjdhfMpoxCXoI4X6XNOL_8BB9Ni-Yl3RfxnuARqDhc3I5K4xHitKeLoiha2Mvay-mnfIHr4Tvnc5qyvRaSqFEAbpCiJl7kGAcLcDq2A_3-zG4O-ZznamdlirHcLWEYrMjnfsTs56m8ALUePM7z1qMERx5myki39YsCzqjg7-OY-TyKU73SPYpfPd3Omu2zoZrn9s6TrsYr2NUZHiFb7InOw_WhTPY3CfJN289XeRLP45om89Rp1fUGnpoBVzrIKtnNzgRIFFMX6SHPGBYV3uyq5b0fTBDnsFfxVWfnsbn3YnK4QtYDEc0bE35BstH5V-JOIcKBB-byAy5PTiKXEpuOwLP-hUl-vW0OneAkgMdN1U0POby3BcjPaF43WP8dVQgLLJIRX57kB6jqU6s8jxdO-Z8BYh2fExGDawxQUIXY2AJF_uuYq6T1aP2TWOjwEqlNLp-4Viu1xC_0N8J2nSLjCuOr5hqTRmP5agMdbDAQ5wneJyBrvznePFHiLmUWLDAaTD8YLxroFTZOu1XYRgirgQkosfFvPrHrcpNEHriEsXquZeGMKdvTT07Jcrt8RNrPFMXBHmE86_LMsX0BQbBakqY7d79Toq94voi_kguZQBUQ4L1-930Ze6Htn3ynYk_y6Q5bI
 
 ####################
 
-DELETE http://localhost:350/api/users/94057e97-8a8c-4f1b-9f9a-d6c178397e03
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4MzQ3MTgsImV4cCI6MTYxNTAxODcxOCwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.Q608PyjMEi4gBInCXmJtgspRgTzlbLnxTz5eUjdhfMpoxCXoI4X6XNOL_8BB9Ni-Yl3RfxnuARqDhc3I5K4xHitKeLoiha2Mvay-mnfIHr4Tvnc5qyvRaSqFEAbpCiJl7kGAcLcDq2A_3-zG4O-ZznamdlirHcLWEYrMjnfsTs56m8ALUePM7z1qMERx5myki39YsCzqjg7-OY-TyKU73SPYpfPd3Omu2zoZrn9s6TrsYr2NUZHiFb7InOw_WhTPY3CfJN289XeRLP45om89Rp1fUGnpoBVzrIKtnNzgRIFFMX6SHPGBYV3uyq5b0fTBDnsFfxVWfnsbn3YnK4QtYDEc0bE35BstH5V-JOIcKBB-byAy5PTiKXEpuOwLP-hUl-vW0OneAkgMdN1U0POby3BcjPaF43WP8dVQgLLJIRX57kB6jqU6s8jxdO-Z8BYh2fExGDawxQUIXY2AJF_uuYq6T1aP2TWOjwEqlNLp-4Viu1xC_0N8J2nSLjCuOr5hqTRmP5agMdbDAQ5wneJyBrvznePFHiLmUWLDAaTD8YLxroFTZOu1XYRgirgQkosfFvPrHrcpNEHriEsXquZeGMKdvTT07Jcrt8RNrPFMXBHmE86_LMsX0BQbBakqY7d79Toq94voi_kguZQBUQ4L1-930Ze6Htn3ynYk_y6Q5bI
+DELETE http://localhost:350/api/users/77abaf8c-287a-4fa0-a030-19fd8b5ac8d5
 
 ####################
 
-PUT http://localhost:350/api/users/5391682d-5327-4f05-b01f-8d294d309694
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NDczOTIsImV4cCI6MTYxNTAzMTM5MiwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.v8nV_una5AjgkheQMOIo0ckbf0Wx72j6LXK1QAw0CBauUXiY-DbvIIM6NspvV7vGO1_3tryA5qFZ8asq-AccDs_cyC1GGQwSFcL5oiMFPYKEF5esKhTDwGPAo1iFDolMAi2UDYNnuK0Hj5ldNmfA-Zuhghmgi5nndPGEmEX3yckBV3maGCjKken5VUp1X3r5r4Zir38ovwDuwCUi3vEKIY5wbBbNJR2tt17iZWTOF6XnMif_Oie1RtSJUfIvtio8rlFSncA2KK_jKUYwZdOwM5IrMvHtSg0qzGWJN-6DBzLoJ_eah_IThs4xs6NxacZeWME9XWjqHvFAE9ORNj6wcrJ20NstU0osRcY4BL2QT4KKjpCLVCyhTlOzjCvqV3BF09j2uZlZIctELRHQhYGKE00j5_5ayksVq7urfHcT6mLg5zhdYg6KAydopd6dKRS2g87PUhYnu7SfEqBznc6q5nEh_PoIH9LTaER8Drihchddw4xmjpJccVZO0ud3TyZI9sFv4UAkb7a0gSVHibCQ4GmIwGIFhjbSv3DXtw1NKY1UBm9msspL-h1zfbGIGyRD-uV69SYeABJOoDw_UnpJQHZTbM07joKM4BAun70kn0ARNylvSTzKh58-gn1TxWD8ON0e0pcSFoAl0kREdpVXwppAQyWUSxN6xWpEyPduBug
+PUT http://localhost:350/api/users/184a312c-ff1f-4fcf-b2e9-d09938f217df
 Content-Type: application/json
 
 {
@@ -62,7 +55,6 @@ Content-Type: application/json
 ####################
 
 GET http://localhost:350/api/users
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
 
 
 
@@ -73,7 +65,6 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzM
 #################################### PRODUCTS #########################################
 
 POST http://localhost:350/api/products/create
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
 Content-Type: application/json
 
 {
@@ -82,8 +73,7 @@ Content-Type: application/json
 
 ####################
 
-DELETE http://localhost:350/api/products/722267c1-012d-4f53-9508-5e2c2f491f55
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
+DELETE http://localhost:350/api/products/8dd2a4a9-8342-4f17-9d94-a4b62dd34978
 
 ####################
 
@@ -110,18 +100,16 @@ GET http://localhost:350/api/products/47068cbf-ca7f-4f0e-b978-21280a8f5cca/servi
 #################################### SERVICES #########################################
 
 POST http://localhost:350/api/services/create
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
 Content-Type: application/json
 
 {
   "name": "PruebaService",
-  "product": "/api/products/47068cbf-ca7f-4f0e-b978-21280a8f5cca"
+  "product": "/api/products/8dd2a4a9-8342-4f17-9d94-a4b62dd34978"
 }
 
 ####################
 
-PUT http://localhost:350/api/services/19606a26-47bd-4f0e-9d60-2fab28b775ee
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
+PUT http://localhost:350/api/services/1572231b-8461-4fdf-b759-972a61a00c8f
 Content-Type: application/json
 
 {
@@ -130,13 +118,11 @@ Content-Type: application/json
 
 ####################
 
-DELETE http://localhost:350/api/services/19606a26-47bd-4f0e-9d60-2fab28b775ee
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
+DELETE http://localhost:350/api/services/1572231b-8461-4fdf-b759-972a61a00c8f
 
 ####################
 
-GET http://localhost:350/api/services/19606a26-47bd-4f0e-9d60-2fab28b775ee
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
+GET http://localhost:350/api/services/1572231b-8461-4fdf-b759-972a61a00c8f
 
 ####################
 
@@ -144,11 +130,9 @@ GET http://localhost:350/api/services
 
 ####################
 
-GET http://localhost:350/api/services/19606a26-47bd-4f0e-9d60-2fab28b775ee/incidents
+GET http://localhost:350/api/services/1572231b-8461-4fdf-b759-972a61a00c8f/incidents
 
 ####################
-
-GET http://localhost:350/api/services/19606a26-47bd-4f0e-9d60-2fab28b775ee/incidents
 
 
 
@@ -159,7 +143,6 @@ GET http://localhost:350/api/services/19606a26-47bd-4f0e-9d60-2fab28b775ee/incid
 #################################### INCIDENTS #########################################
 
 POST http://localhost:350/api/incidents/create
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
 Content-Type: application/json
 
 {
@@ -168,19 +151,17 @@ Content-Type: application/json
   "state": "En investigación",
   "gravity": "Baja",
   "services": [
-    "/api/services/2d6f7faa-4501-4fbc-8d13-b4b92c73a9ee"
+    "/api/services/1572231b-8461-4fdf-b759-972a61a00c8f"
   ]
 }
 
 ####################
 
-GET http://localhost:350/api/incidents/fb018388-0733-4f76-9abb-60ed9ced0e6a
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
+GET http://localhost:350/api/incidents/74b6ad85-8f54-4fcd-b7f2-7614ad1d642d
 
 ####################
 
-PUT http://localhost:350/api/incidents/fb018388-0733-4f76-9abb-60ed9ced0e6a
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
+PUT http://localhost:350/api/incidents/74b6ad85-8f54-4fcd-b7f2-7614ad1d642d
 Content-Type: application/json
 
 {
@@ -189,14 +170,13 @@ Content-Type: application/json
   "state": "En investigación",
   "gravity": "Baja",
   "services": [
-    "/api/services/2d6f7faa-4501-4fbc-8d13-b4b92c73a9ee"
+    "/api/services/1572231b-8461-4fdf-b759-972a61a00c8f"
   ]
 }
 
 ####################
 
-DELETE http://localhost:350/api/incidents/fb018388-0733-4f76-9abb-60ed9ced0e6a
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
+DELETE http://localhost:350/api/incidents/74b6ad85-8f54-4fcd-b7f2-7614ad1d642d
 
 ####################
 
@@ -204,7 +184,6 @@ GET http://localhost:350/api/incidents
 
 ####################
 
-GET http://localhost:350/api/incidents/fb018388-0733-4f76-9abb-60ed9ced0e6a/services
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4NTQzMTUsImV4cCI6MTYxNTAzODMxNSwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.ZaPeUHMxofEeKrToA6Lml96xSJDrMj1zJRcVVeJRTXlyidD-MrQaFzmLbN24dtRLv3YvpJD2vmEv6TjRUo1kLbyZrh_4lRDjKHkdfyWsC5ZVD6AefM8G1TrBxHNBUMxzzWHkBOKYPXRcgpAKlx6VUDeHmI6FHZlMbVFzMFDMu691CGrnOjFBlWjauydVHcw7XgUGLCOFvoHqSrVKiLlhbjK-AcJNwO0ieFhRJ7pd7kBmdfbTpkuJee0W3OihxCOf9ZqsyZT82EyiNsHcHLKYZWM22eBuHRa4Q8vUWPuEkZ5-rxNt3sy5slyGy_Cye3bvC_vkdoGqoOHKWVBK_K_cx0RrFLRd6x1ojEAveZ1AiWtMzF0XtRM0dISuaaOBbRAMTV39D87jxIw7dxuHqzY_knGfIkYfslNuJAwF0qPHqpqlRqzrq1TWICm6VEQAe2iow_Zaz_cusq65AIMdM0YVP6o9sKA8UirUvUUMgeTfK8_5_pKwwLE3ZPphpS2pAIgyvkgkaFSVoSp3Ct5Axgk-MocpfM34yjmIaSOLWbFxnAMgFtVqcA6WYryFVV5ovfCCmwVAaGf0zyxgDcYuAwIp_RD8qHZ9pFX-LfiI2uuCNW8v4NqbRPkeg4AHonyP6RY9Jv3fDO23Q6fs20vwYayleL6JTWCVP2RzKJ7aYJk1F80
+GET http://localhost:350/api/incidents/74b6ad85-8f54-4fcd-b7f2-7614ad1d642d/services
 
 ####################

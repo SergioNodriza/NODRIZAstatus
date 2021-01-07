@@ -494,19 +494,21 @@
       <tag name="controller.service_arguments"/>
       <argument type="service" id="App\Service\User\UserCreateService"/>
     </service>
-    <service id="App\Controller\Listener\JWTCreatedListener" class="App\Controller\Listener\JWTCreatedListener" autowire="true" autoconfigure="true">
-      <tag name="kernel.event_listener" event="lexik_jwt_authentication.on_jwt_created" method="onJWTCreated"/>
+    <service id="App\Controller\Listener\EntitySubscribers\IncidentNotifier" class="App\Controller\Listener\EntitySubscribers\IncidentNotifier" autowire="true" autoconfigure="true">
+      <tag name="doctrine.event_subscriber"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="App\Controller\Listener\EntitySubscribers\ServiceNotifier" class="App\Controller\Listener\EntitySubscribers\ServiceNotifier" autowire="true" autoconfigure="true">
+      <tag name="doctrine.event_subscriber"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="App\Controller\Listener\JWTSubscriber" class="App\Controller\Listener\JWTSubscriber" autowire="true" autoconfigure="true">
+      <tag name="kernel.event_subscriber"/>
+      <tag name="container.hot_path"/>
+      <argument type="service" id="lexik_jwt_authentication.jwt_manager"/>
     </service>
     <service id="App\Controller\Listener\JsonExceptionResponseTransformerListener" class="App\Controller\Listener\JsonExceptionResponseTransformerListener" autowire="true" autoconfigure="true">
       <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" priority="100"/>
-    </service>
-    <service id="App\Controller\Listener\Subscribers\IncidentNotifier" class="App\Controller\Listener\Subscribers\IncidentNotifier" autowire="true" autoconfigure="true">
-      <tag name="doctrine.event_subscriber"/>
-      <argument type="service" id="doctrine.orm.default_entity_manager"/>
-    </service>
-    <service id="App\Controller\Listener\Subscribers\ServiceNotifier" class="App\Controller\Listener\Subscribers\ServiceNotifier" autowire="true" autoconfigure="true">
-      <tag name="doctrine.event_subscriber"/>
-      <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
     <service id="App\Exceptions\AlreadyExistsException" class="App\Exceptions\AlreadyExistsException" autowire="true" autoconfigure="true"/>
     <service id="App\Exceptions\PasswordException" class="App\Exceptions\PasswordException" autowire="true" autoconfigure="true"/>
@@ -1650,14 +1652,6 @@
       <argument type="service" id="monolog.logger.event" on-invalid="null"/>
       <argument type="service" id="request_stack" on-invalid="null"/>
       <call method="addListener">
-        <argument>lexik_jwt_authentication.on_jwt_created</argument>
-        <argument type="collection">
-          <argument type="service" id="App\Controller\Listener\JWTCreatedListener"/>
-          <argument>onJWTCreated</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.exception</argument>
         <argument type="collection">
           <argument type="service" id="App\Controller\Listener\JsonExceptionResponseTransformerListener"/>
@@ -1816,6 +1810,38 @@
           <argument>onSecurityPostDenormalize</argument>
         </argument>
         <argument>1</argument>
+      </call>
+      <call method="addListener">
+        <argument>lexik_jwt_authentication.on_jwt_created</argument>
+        <argument type="collection">
+          <argument type="service" id="App\Controller\Listener\JWTSubscriber"/>
+          <argument>onJWTCreated</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>lexik_jwt_authentication.on_jwt_authenticated</argument>
+        <argument type="collection">
+          <argument type="service" id="App\Controller\Listener\JWTSubscriber"/>
+          <argument>onAuthenticatedAccess</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.response</argument>
+        <argument type="collection">
+          <argument type="service" id="App\Controller\Listener\JWTSubscriber"/>
+          <argument>onAuthenticatedResponse</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>lexik_jwt_authentication.on_authentication_failure</argument>
+        <argument type="collection">
+          <argument type="service" id="App\Controller\Listener\JWTSubscriber"/>
+          <argument>onAuthenticatedFail</argument>
+        </argument>
+        <argument>0</argument>
       </call>
       <call method="addListener">
         <argument>kernel.response</argument>
@@ -3460,10 +3486,10 @@
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager">
       <argument type="service" id=".service_locator.vhzPeUU"/>
       <call method="addEventSubscriber">
-        <argument type="service" id="App\Controller\Listener\Subscribers\IncidentNotifier"/>
+        <argument type="service" id="App\Controller\Listener\EntitySubscribers\IncidentNotifier"/>
       </call>
       <call method="addEventSubscriber">
-        <argument type="service" id="App\Controller\Listener\Subscribers\ServiceNotifier"/>
+        <argument type="service" id="App\Controller\Listener\EntitySubscribers\ServiceNotifier"/>
       </call>
       <call method="addEventSubscriber">
         <argument type="service" id="doctrine.orm.listeners.pdo_cache_adapter_doctrine_schema_subscriber"/>
@@ -5459,7 +5485,9 @@
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="lexik_jwt_authentication.jwt_manager"/>
       <argument type="service" id="debug.event_dispatcher"/>
-      <argument type="collection"/>
+      <argument type="iterator">
+        <argument type="service" id="lexik_jwt_authentication.cookie_provider.BEARER"/>
+      </argument>
     </service>
     <service id="lexik_jwt_authentication.handler.authentication_failure" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Authentication\AuthenticationFailureHandler">
       <tag name="monolog.logger" channel="security"/>
@@ -5475,6 +5503,7 @@
     <service id="lexik_jwt_authentication.extractor.chain_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\ChainTokenExtractor">
       <argument type="collection">
         <argument type="service" id="lexik_jwt_authentication.extractor.authorization_header_extractor"/>
+        <argument type="service" id="lexik_jwt_authentication.extractor.cookie_extractor"/>
       </argument>
     </service>
     <service id="lexik_jwt_authentication.extractor.authorization_header_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\AuthorizationHeaderTokenExtractor">
@@ -5485,7 +5514,7 @@
       <argument></argument>
     </service>
     <service id="lexik_jwt_authentication.extractor.cookie_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\CookieTokenExtractor">
-      <argument></argument>
+      <argument>BEARER</argument>
     </service>
     <service id="lexik_jwt_authentication.extractor.split_cookie_extractor" class="Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\SplitCookieExtractor">
       <argument></argument>
@@ -5493,9 +5522,31 @@
     <service id="lexik_jwt_authentication.security.jwt_user_provider" class="Lexik\Bundle\JWTAuthenticationBundle\Security\User\JWTUserProvider">
       <argument></argument>
     </service>
+    <service id="lexik_jwt_authentication.cookie_provider" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Cookie\JWTCookieProvider" abstract="true">
+      <argument>null</argument>
+      <argument>null</argument>
+      <argument></argument>
+      <argument></argument>
+      <argument>null</argument>
+      <argument></argument>
+      <argument></argument>
+      <argument>null</argument>
+    </service>
+    <service id="lexik_jwt_authentication.cookie_provider.BEARER" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Http\Cookie\JWTCookieProvider">
+      <argument>BEARER</argument>
+      <argument>%env(resolve:JWT_TOKEN_TTL)%</argument>
+      <argument>lax</argument>
+      <argument>/</argument>
+      <argument>null</argument>
+      <argument>false</argument>
+      <argument>true</argument>
+      <argument type="collection"/>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Action\Pruebas" class="App\Controller\Action\Pruebas" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Action\Pruebas" class="App\Controller\Action\Pruebas" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Action\Pruebas" class="App\Controller\Action\Pruebas" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\EventDispatcher\EventSubscriberInterface.0.App\Controller\Listener\JWTSubscriber" class="App\Controller\Listener\JWTSubscriber" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Listener\JWTSubscriber" class="App\Controller\Listener\JWTSubscriber" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\IncidentRepository" class="App\Repository\IncidentRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\IncidentRepository" class="App\Repository\IncidentRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProductRepository" class="App\Repository\ProductRepository" autowire="true" abstract="true"/>

@@ -39,7 +39,11 @@ class ProductVoter extends Voter
         $roles = $token->getRoleNames();
         $permissions = $this->rolesService->checkPermissions($roles);
 
-        return in_array($attribute, $permissions['product'], true);
+        try {
+            return in_array($attribute, $permissions['product'], true);
+        }  catch (\Exception $exception) {
+            return false;
+        }
     }
 
     private function supportedAttributes(): array

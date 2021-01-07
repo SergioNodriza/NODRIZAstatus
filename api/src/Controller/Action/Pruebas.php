@@ -5,6 +5,7 @@ namespace App\Controller\Action;
 
 use App\Entity\Service;
 use App\Entity\User;
+use App\Exceptions\UserNotFoundException;
 use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use App\Service\Password\EncoderService;
@@ -224,5 +225,23 @@ class Pruebas extends AbstractController
         }
 
         return (new Response($permissions));
+    }
+
+
+    /**
+     * @Route("/11", name="pruebas")
+     * @return Response
+     */
+    public function tryException(): Response
+    {
+        $username = 'Admin2';
+
+        if (!$user = $this->userRepository->findOneBy(['name' => $username])) {
+            throw UserNotFoundException::fromName($username);
+        }
+
+        $id = $user->getId();
+
+        return (new Response($id));
     }
 }

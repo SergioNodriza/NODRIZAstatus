@@ -31,11 +31,6 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
         }
 
         return $user;
-//        try {
-//            return $this->userRepository->findOneBy(['name' => $username]);
-//        } catch (Exception $exception) {
-//            throw UserNotFoundException::fromName($username);
-//        }
     }
 
     public function refreshUser(UserInterface $user): UserInterface

@@ -33,7 +33,7 @@ class RolesService
                     break;
                 case self::BUSINESS:
                     $permissions = [
-                        self::INCIDENT_PERMISSIONS
+                        'incident' => self::INCIDENT_PERMISSIONS
                     ];
                     break;
                 default:

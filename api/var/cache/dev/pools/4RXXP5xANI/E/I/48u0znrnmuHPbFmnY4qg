@@ -1,3 +1,0 @@
-<?php //route_name_6ec96fa2aad058fcff67a5d08478599d
-
-return [PHP_INT_MAX, 'api_incidents_get_collection'];

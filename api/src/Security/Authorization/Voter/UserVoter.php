@@ -38,7 +38,11 @@ class UserVoter extends Voter
         $roles = $token->getRoleNames();
         $permissions = $this->rolesService->checkPermissions($roles);
 
-        return in_array($attribute, $permissions['user'], true);
+        try {
+            return in_array($attribute, $permissions['user'], true);
+        }  catch (\Exception $exception) {
+            return false;
+        }
     }
 
     private function supportedAttributes(): array
