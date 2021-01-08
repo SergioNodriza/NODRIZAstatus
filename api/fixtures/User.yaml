@@ -1,0 +1,12 @@
+parameters: # password
+  testing_password_hash: $argon2i$v=19$m=16,t=2,p=1$cGFzc3dvcmQ$A9HKT/FCm9ft8VCFgT4rVw
+
+App\Entity\User:
+  User-0:
+    name: Peter
+    password: <{testing_password_hash}>
+    roles: [ ROLE_ADMIN ]
+  User-1:
+    name: Brian
+    password: <{testing_password_hash}>
+    roles: [ ROLE_EMPRESA_TUUP ]

@@ -20,6 +20,10 @@
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="LexikJWTAuthenticationBundle">Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle</parameter>
+      <parameter key="NelmioAliceBundle">Nelmio\Alice\Bridge\Symfony\NelmioAliceBundle</parameter>
+      <parameter key="FidryAliceDataFixturesBundle">Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle</parameter>
+      <parameter key="HautelookAliceBundle">Hautelook\AliceBundle\HautelookAliceBundle</parameter>
+      <parameter key="LiipTestFixturesBundle">Liip\TestFixturesBundle\LiipTestFixturesBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -65,6 +69,22 @@
       <parameter key="LexikJWTAuthenticationBundle" type="collection">
         <parameter key="path">/home/sergio/Sites/NODRIZAstatus/vendor/lexik/jwt-authentication-bundle</parameter>
         <parameter key="namespace">Lexik\Bundle\JWTAuthenticationBundle</parameter>
+      </parameter>
+      <parameter key="NelmioAliceBundle" type="collection">
+        <parameter key="path">/home/sergio/Sites/NODRIZAstatus/vendor/nelmio/alice/src/Bridge/Symfony</parameter>
+        <parameter key="namespace">Nelmio\Alice\Bridge\Symfony</parameter>
+      </parameter>
+      <parameter key="FidryAliceDataFixturesBundle" type="collection">
+        <parameter key="path">/home/sergio/Sites/NODRIZAstatus/vendor/theofidry/alice-data-fixtures/src/Bridge/Symfony</parameter>
+        <parameter key="namespace">Fidry\AliceDataFixtures\Bridge\Symfony</parameter>
+      </parameter>
+      <parameter key="HautelookAliceBundle" type="collection">
+        <parameter key="path">/home/sergio/Sites/NODRIZAstatus/vendor/hautelook/alice-bundle/src</parameter>
+        <parameter key="namespace">Hautelook\AliceBundle</parameter>
+      </parameter>
+      <parameter key="LiipTestFixturesBundle" type="collection">
+        <parameter key="path">/home/sergio/Sites/NODRIZAstatus/vendor/liip/test-fixtures-bundle/src</parameter>
+        <parameter key="namespace">Liip\TestFixturesBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -387,6 +407,29 @@
     <parameter key="lexik_jwt_authentication.user_id_claim">username</parameter>
     <parameter key="lexik_jwt_authentication.encoder.signature_algorithm">RS256</parameter>
     <parameter key="lexik_jwt_authentication.encoder.crypto_engine">openssl</parameter>
+    <parameter key="nelmio_alice.functions_blacklist" type="collection">
+      <parameter>current</parameter>
+      <parameter>shuffle</parameter>
+      <parameter>date</parameter>
+      <parameter>time</parameter>
+      <parameter>file</parameter>
+      <parameter>md5</parameter>
+      <parameter>sha1</parameter>
+    </parameter>
+    <parameter key="nelmio_alice.locale">en_US</parameter>
+    <parameter key="nelmio_alice.seed">1</parameter>
+    <parameter key="nelmio_alice.loading_limit">5</parameter>
+    <parameter key="nelmio_alice.max_unique_values_retry">150</parameter>
+    <parameter key="fidry_alice_data_fixtures.default_purge_mode">delete</parameter>
+    <parameter key="hautelook_alice.fixtures_path" type="collection">
+      <parameter>fixtures</parameter>
+    </parameter>
+    <parameter key="hautelook_alice.root_dirs" type="collection">
+      <parameter>/home/sergio/Sites/NODRIZAstatus</parameter>
+    </parameter>
+    <parameter key="liip_test_fixtures.cache_db.sqlite">null</parameter>
+    <parameter key="liip_test_fixtures.keep_database_and_schema">false</parameter>
+    <parameter key="liip_test_fixtures.cache_metadata">true</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -1832,14 +1875,6 @@
         <argument type="collection">
           <argument type="service" id="App\Controller\Listener\JWTSubscriber"/>
           <argument>onAuthenticatedResponse</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListener">
-        <argument>lexik_jwt_authentication.on_authentication_failure</argument>
-        <argument type="collection">
-          <argument type="service" id="App\Controller\Listener\JWTSubscriber"/>
-          <argument>onAuthenticatedFail</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -4090,7 +4125,7 @@
         <argument key="security.firewall.map.context.getIncidentsId" type="service" id=".security.request_matcher.XedioR8"/>
         <argument key="security.firewall.map.context.getProductsIdServices" type="service" id=".security.request_matcher.bvAEjVw"/>
         <argument key="security.firewall.map.context.getIncidentsIdServices" type="service" id=".security.request_matcher.3HTf0UU"/>
-        <argument key="security.firewall.map.context.login" type="service" id=".security.request_matcher.vvXci6l"/>
+        <argument key="security.firewall.map.context.login" type="service" id=".security.request_matcher.rZ3JWF5"/>
         <argument key="security.firewall.map.context.api" type="service" id=".security.request_matcher.uTv4pMG"/>
       </argument>
     </service>
@@ -4751,7 +4786,7 @@
     <service id="security.firewall.map.config.login" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig">
       <argument>login</argument>
       <argument>security.user_checker</argument>
-      <argument>.security.request_matcher.vvXci6l</argument>
+      <argument>.security.request_matcher.rZ3JWF5</argument>
       <argument>true</argument>
       <argument>true</argument>
       <argument>App\Security\Core\User\UserProvider</argument>
@@ -4765,8 +4800,8 @@
       </argument>
       <argument>null</argument>
     </service>
-    <service id=".security.request_matcher.vvXci6l" class="Symfony\Component\HttpFoundation\RequestMatcher">
-      <argument>/api/users/login</argument>
+    <service id=".security.request_matcher.rZ3JWF5" class="Symfony\Component\HttpFoundation\RequestMatcher">
+      <argument>^/api/users/login</argument>
     </service>
     <service id="security.event_dispatcher.login" class="Symfony\Component\EventDispatcher\EventDispatcher">
       <call method="addListener">
@@ -5542,6 +5577,603 @@
       <argument>true</argument>
       <argument type="collection"/>
     </service>
+    <service id="nelmio_alice.data_loader.simple" class="Nelmio\Alice\Loader\SimpleDataLoader">
+      <argument type="service" id="nelmio_alice.fixture_builder.simple"/>
+      <argument type="service" id="nelmio_alice.generator.double_pass"/>
+    </service>
+    <service id="nelmio_alice.file_loader.simple" class="Nelmio\Alice\Loader\SimpleFileLoader">
+      <argument type="service" id="nelmio_alice.file_parser.runtime_cache"/>
+      <argument type="service" id="nelmio_alice.data_loader.simple"/>
+    </service>
+    <service id="nelmio_alice.files_loader.simple" class="Nelmio\Alice\Loader\SimpleFilesLoader">
+      <argument type="service" id="nelmio_alice.file_parser.runtime_cache"/>
+      <argument type="service" id="nelmio_alice.data_loader.simple"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.element" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\ElementFlagParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.registry"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.registry" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\FlagParserRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.configurator"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.extend"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.optional"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.template"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.unique"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.configurator" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\Chainable\ConfiguratorFlagParser">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_flag_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.extend" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\Chainable\ExtendFlagParser">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_flag_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.optional" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\Chainable\OptionalFlagParser">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_flag_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.template" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\Chainable\TemplateFlagParser">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_flag_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.unique" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\Chainable\UniqueFlagParser">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_flag_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.simple_fixture_bag_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SimpleFixtureBagDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.tolerant_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.element"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.tolerant_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\TolerantFixtureDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.registry_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.registry_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\FixtureDenormalizerRegistry">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.element"/>
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple_list"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.reference_range_name"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple_range"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.null_list" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\NullListNameDenormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.temporary_list" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\CollectionDenormalizerWithTemporaryFixture">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.null_list"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple_list" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\SimpleCollectionDenormalizer">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_fixture_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.temporary_list"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.null_range" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\NullRangeNameDenormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.reference_range_name" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\ReferenceRangeNameDenormalizer">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_fixture_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.specs.simple"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.temporary_range" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\CollectionDenormalizerWithTemporaryFixture">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.null_range"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple_range" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\SimpleCollectionDenormalizer">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_fixture_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.temporary_range"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\SimpleDenormalizer">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_fixture_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.specs.simple"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.specs.simple" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\SimpleSpecificationsDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.legacy_constructor_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.property.simple_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.simple_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.legacy_constructor_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Constructor\LegacyConstructorDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.constructor_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.factory_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.factory_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Constructor\FactoryDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.simple_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.constructor_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Constructor\ConstructorDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.arguments.simple_arguments_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.arguments.simple_arguments_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Arguments\SimpleArgumentsDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.unique_value_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.unique_value_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Value\UniqueValueDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.simple_value_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.simple_value_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Value\SimpleValueDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.function_fixture_reference_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.property.simple_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Property\SimplePropertyDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.unique_value_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.simple_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Calls\CallsWithFlagsDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.function_denormalizer"/>
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.method_flag_handler.configurator_flag_handler"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.method_flag_handler.optional_flag_handler"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.function_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Calls\FunctionDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.arguments.simple_arguments_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.method_flag_handler.configurator_flag_handler" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Calls\MethodFlagHandler\ConfiguratorFlagHandler">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_method_flag_handler"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.method_flag_handler.optional_flag_handler" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Calls\MethodFlagHandler\OptionalFlagHandler">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_method_flag_handler"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.registry" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\TokenParserRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.dynamic_array_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.escaped_value_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_list_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_method_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_range_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.method_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.optional_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.parameter_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.property_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.variable_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.simple_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.string_array_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.string_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.tolerant_function_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.variable_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.wildcard_reference_token_parser"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.argument_escaper" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\ArgumentEscaper"/>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.dynamic_array_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\DynamicArrayTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.escaped_value_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\EscapedValueTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_list_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\FixtureListReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_method_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\FixtureMethodReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_range_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\FixtureRangeReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.method_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\MethodReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.optional_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\OptionalTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.parameter_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\ParameterTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.property_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\PropertyReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.variable_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\VariableReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.simple_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\SimpleReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.string_array_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\StringArrayTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.string_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\StringTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.argument_escaper"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.tolerant_function_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\TolerantFunctionTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.identity_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.identity_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\IdentityTokenParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.function_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.function_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\FunctionTokenParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.argument_escaper"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.variable_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\VariableTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.wildcard_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\WildcardReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.empty_value_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\EmptyValueLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.reference_escaper_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.reference_escaper_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\ReferenceEscaperLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.globals_patterns_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.globals_patterns_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\GlobalPatternsLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.function_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.function_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\FunctionLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.string_then_reference_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.string_then_reference_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\StringThenReferenceLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.sub_patterns_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.sub_patterns_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\SubPatternsLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.reference_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.reference_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\ReferenceLexer"/>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.function_fixture_reference_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\FunctionFixtureReferenceParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.string_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.string_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\StringMergerParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.simple_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.simple_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\SimpleParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.empty_value_lexer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.registry"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.simple" class="Nelmio\Alice\FixtureBuilder\SimpleBuilder">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.simple"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.simple" class="Nelmio\Alice\FixtureBuilder\Denormalizer\SimpleDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.parameter.simple_parameter_bag_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.simple_fixture_bag_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.parameter.simple_parameter_bag_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Parameter\SimpleParameterBagDenormalizer"/>
+    <service id="nelmio_alice.file_locator.default" class="Nelmio\Alice\FileLocator\DefaultFileLocator"/>
+    <service id="nelmio_alice.generator.hydrator.simple" class="Nelmio\Alice\Generator\Hydrator\SimpleHydrator">
+      <argument type="service" id="nelmio_alice.generator.hydrator.property.symfony_property_access"/>
+    </service>
+    <service id="nelmio_alice.generator.hydrator.property.symfony_property_access" class="Nelmio\Alice\Generator\Hydrator\Property\SymfonyPropertyAccessorHydrator">
+      <argument type="service" id="nelmio_alice.property_accessor.std"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter_bag.remove_conflicting_parameters" class="Nelmio\Alice\Generator\Resolver\Parameter\RemoveConflictingParametersParameterBagResolver">
+      <argument type="service" id="nelmio_alice.generator.resolver.parameter_bag.simple"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter_bag.simple" class="Nelmio\Alice\Generator\Resolver\Parameter\SimpleParameterBagResolver">
+      <argument type="service" id="nelmio_alice.generator.resolver.parameter.registry"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter.registry" class="Nelmio\Alice\Generator\Resolver\Parameter\ParameterResolverRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.generator.resolver.parameter.chainable.static_parameter_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.parameter.chainable.array_parameter_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.parameter.chainable.recursive_parameter_resolver"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter.chainable.static_parameter_resolver" class="Nelmio\Alice\Generator\Resolver\Parameter\Chainable\StaticParameterResolver">
+      <tag name="nelmio_alice.generator.resolver.parameter.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter.chainable.array_parameter_resolver" class="Nelmio\Alice\Generator\Resolver\Parameter\Chainable\ArrayParameterResolver">
+      <tag name="nelmio_alice.generator.resolver.parameter.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter.chainable.recursive_parameter_resolver" class="Nelmio\Alice\Generator\Resolver\Parameter\Chainable\RecursiveParameterResolver">
+      <tag name="nelmio_alice.generator.resolver.parameter.chainable_resolver"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.parameter.chainable.string_parameter_resolver"/>
+      <argument>5</argument>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter.chainable.string_parameter_resolver" class="Nelmio\Alice\Generator\Resolver\Parameter\Chainable\StringParameterResolver"/>
+    <service id="nelmio_alice.generator.resolver.value.registry" class="Nelmio\Alice\Generator\Resolver\Value\ValueResolverRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.array_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.dynamic_array_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.evaluated_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.function_argument_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.fixture_property_reference_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.fixture_method_call_reference_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.unresolved_fixture_reference_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.fixture_wildcard_reference_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.list_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.optional_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.parameter_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.unique_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.value_for_current_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.variable_value_resolver"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.unique_values_pool" class="Nelmio\Alice\Generator\Resolver\UniqueValuesPool"/>
+    <service id="nelmio_alice.generator.resolver.value.chainable.array_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\ArrayValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.dynamic_array_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\DynamicArrayValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.evaluated_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\EvaluatedValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.faker_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FakerFunctionCallValueResolver">
+      <argument type="service" id="nelmio_alice.faker.generator"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.php_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\PhpFunctionCallValueResolver">
+      <argument>%nelmio_alice.functions_blacklist%</argument>
+      <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.faker_value_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.function_argument_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FunctionCallArgumentResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.php_value_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.fixture_property_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FixturePropertyReferenceResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+      <argument type="service" id="nelmio_alice.property_accessor.std"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.fixture_method_call_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FixtureMethodCallReferenceResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.fixture_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FixtureReferenceResolver"/>
+    <service id="nelmio_alice.generator.resolver.value.chainable.self_fixture_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\SelfFixtureReferenceResolver">
+      <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.fixture_reference_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.unresolved_fixture_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\UnresolvedFixtureReferenceIdResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.self_fixture_reference_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.fixture_wildcard_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FixtureWildcardReferenceResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.list_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\ListValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.optional_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\OptionalValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.parameter_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\ParameterValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.unique_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\UniqueValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.value.unique_values_pool"/>
+      <argument>null</argument>
+      <argument>150</argument>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.value_for_current_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\ValueForCurrentValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.variable_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\VariableValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.named_arguments_resolver" class="Nelmio\Alice\Generator\NamedArgumentsResolver"/>
+    <service id="nelmio_alice.generator.resolver.fixture_bag.template_bag" class="Nelmio\Alice\Generator\Resolver\Fixture\TemplateFixtureBagResolver"/>
+    <service id="nelmio_alice.generator.resolver.fixture_set.remove_conflicting_objects" class="Nelmio\Alice\Generator\Resolver\FixtureSet\RemoveConflictingObjectsResolver">
+      <argument type="service" id="nelmio_alice.generator.resolver.fixture_set.simple"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.fixture_set.simple" class="Nelmio\Alice\Generator\Resolver\FixtureSet\SimpleFixtureSetResolver">
+      <argument type="service" id="nelmio_alice.generator.resolver.parameter_bag.remove_conflicting_parameters"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.fixture_bag.template_bag"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.existing_instance" class="Nelmio\Alice\Generator\Instantiator\ExistingInstanceInstantiator">
+      <argument type="service" id="nelmio_alice.generator.instantiator.resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.resolver" class="Nelmio\Alice\Generator\Instantiator\InstantiatorResolver">
+      <argument type="service" id="nelmio_alice.generator.instantiator.registry"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.registry" class="Nelmio\Alice\Generator\Instantiator\InstantiatorRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.generator.instantiator.chainable.no_caller_method_instantiator"/>
+        <argument type="service" id="nelmio_alice.generator.instantiator.chainable.null_constructor_instantiator"/>
+        <argument type="service" id="nelmio_alice.generator.instantiator.chainable.no_method_call_instantiator"/>
+        <argument type="service" id="nelmio_alice.generator.instantiator.chainable.static_factory_instantiator"/>
+        <argument type="service" id="hautelook_alice.alice.generator.instantiator.chainable.instantiated_reference_instantiator"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.chainable.no_caller_method_instantiator" class="Nelmio\Alice\Generator\Instantiator\Chainable\NoCallerMethodCallInstantiator">
+      <tag name="nelmio_alice.generator.instantiator.chainable_instantiator"/>
+      <argument type="service" id="nelmio_alice.generator.named_arguments_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.chainable.null_constructor_instantiator" class="Nelmio\Alice\Generator\Instantiator\Chainable\NullConstructorInstantiator">
+      <tag name="nelmio_alice.generator.instantiator.chainable_instantiator"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.chainable.no_method_call_instantiator" class="Nelmio\Alice\Generator\Instantiator\Chainable\NoMethodCallInstantiator">
+      <tag name="nelmio_alice.generator.instantiator.chainable_instantiator"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.chainable.static_factory_instantiator" class="Nelmio\Alice\Generator\Instantiator\Chainable\StaticFactoryInstantiator">
+      <tag name="nelmio_alice.generator.instantiator.chainable_instantiator"/>
+      <argument type="service" id="nelmio_alice.generator.named_arguments_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.caller.simple" class="Nelmio\Alice\Generator\Caller\SimpleCaller">
+      <argument type="service" id="nelmio_alice.generator.caller.registry"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.value.registry"/>
+      <argument type="service" id="nelmio_alice.generator.named_arguments_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.caller.registry" class="Nelmio\Alice\Generator\Caller\CallProcessorRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.generator.caller.chainable.configurator_method_call"/>
+        <argument type="service" id="nelmio_alice.generator.caller.chainable.method_call_with_reference"/>
+        <argument type="service" id="nelmio_alice.generator.caller.chainable.optional_method_call"/>
+        <argument type="service" id="nelmio_alice.generator.caller.chainable.simple_call"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.generator.caller.chainable.configurator_method_call" class="Nelmio\Alice\Generator\Caller\Chainable\ConfiguratorMethodCallProcessor">
+      <tag name="nelmio_alice.generator.caller.chainable_call_processor"/>
+    </service>
+    <service id="nelmio_alice.generator.caller.chainable.method_call_with_reference" class="Nelmio\Alice\Generator\Caller\Chainable\MethodCallWithReferenceProcessor">
+      <tag name="nelmio_alice.generator.caller.chainable_call_processor"/>
+    </service>
+    <service id="nelmio_alice.generator.caller.chainable.optional_method_call" class="Nelmio\Alice\Generator\Caller\Chainable\OptionalMethodCallProcessor">
+      <tag name="nelmio_alice.generator.caller.chainable_call_processor"/>
+    </service>
+    <service id="nelmio_alice.generator.caller.chainable.simple_call" class="Nelmio\Alice\Generator\Caller\Chainable\SimpleMethodCallProcessor">
+      <tag name="nelmio_alice.generator.caller.chainable_call_processor"/>
+    </service>
+    <service id="nelmio_alice.generator.double_pass" class="Nelmio\Alice\Generator\DoublePassGenerator">
+      <argument type="service" id="nelmio_alice.generator.resolver.fixture_set.remove_conflicting_objects"/>
+      <argument type="service" id="nelmio_alice.generator.object_generator.complete"/>
+    </service>
+    <service id="nelmio_alice.generator.object_generator.complete" class="Nelmio\Alice\Generator\ObjectGenerator\CompleteObjectGenerator">
+      <argument type="service" id="nelmio_alice.generator.object_generator.simple"/>
+    </service>
+    <service id="nelmio_alice.generator.object_generator.simple" class="Nelmio\Alice\Generator\ObjectGenerator\SimpleObjectGenerator">
+      <argument type="service" id="nelmio_alice.generator.resolver.value.registry"/>
+      <argument type="service" id="nelmio_alice.generator.instantiator.existing_instance"/>
+      <argument type="service" id="nelmio_alice.generator.hydrator.simple"/>
+      <argument type="service" id="nelmio_alice.generator.caller.simple"/>
+    </service>
+    <service id="nelmio_alice.file_parser.runtime_cache" class="Nelmio\Alice\Parser\RuntimeCacheParser">
+      <argument type="service" id="nelmio_alice.file_parser.registry"/>
+      <argument type="service" id="hautelook_alice.alice.file_locator.kernel"/>
+      <argument type="service" id="nelmio_alice.file_parser.default_include_processor"/>
+    </service>
+    <service id="nelmio_alice.file_parser.symfony_yaml" class="Symfony\Component\Yaml\Parser"/>
+    <service id="nelmio_alice.file_parser.default_include_processor" class="Nelmio\Alice\Parser\IncludeProcessor\DefaultIncludeProcessor">
+      <argument type="service" id="hautelook_alice.alice.file_locator.kernel"/>
+    </service>
+    <service id="nelmio_alice.file_parser.registry" class="Nelmio\Alice\Parser\ParserRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.file_parser.chainable.yaml"/>
+        <argument type="service" id="nelmio_alice.file_parser.chainable.php"/>
+        <argument type="service" id="nelmio_alice.file_parser.chainable.json"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.file_parser.chainable.yaml" class="Nelmio\Alice\Parser\Chainable\YamlParser">
+      <tag name="nelmio_alice.file_parser"/>
+      <argument type="service" id="nelmio_alice.file_parser.symfony_yaml"/>
+    </service>
+    <service id="nelmio_alice.file_parser.chainable.php" class="Nelmio\Alice\Parser\Chainable\PhpParser">
+      <tag name="nelmio_alice.file_parser"/>
+    </service>
+    <service id="nelmio_alice.file_parser.chainable.json" class="Nelmio\Alice\Parser\Chainable\JsonParser">
+      <tag name="nelmio_alice.file_parser"/>
+    </service>
+    <service id="nelmio_alice.property_accessor.std" class="Nelmio\Alice\PropertyAccess\StdPropertyAccessor">
+      <argument type="service" id="property_accessor"/>
+    </service>
+    <service id="nelmio_alice.faker.generator" class="Faker\Generator">
+      <argument>en_US</argument>
+      <call method="seed">
+        <argument>1</argument>
+      </call>
+      <call method="addProvider">
+        <argument type="service" id="nelmio_alice.faker.provider.alice"/>
+      </call>
+      <factory class="Faker\Factory" method="create"/>
+    </service>
+    <service id="nelmio_alice.faker.provider.alice" class="Nelmio\Alice\Faker\Provider\AliceProvider">
+      <tag name="nelmio_alice.faker.provider"/>
+    </service>
+    <service id="fidry_alice_data_fixtures.loader.multipass_file" class="Fidry\AliceDataFixtures\Loader\MultiPassLoader" lazy="true">
+      <argument type="service" id="nelmio_alice.file_loader.simple"/>
+      <deprecated package="theofidry/alice-data-fixtures" version="1.0">The service "%service_id%" is deprecated and will be removed in future versions.</deprecated>
+    </service>
+    <service id="fidry_alice_data_fixtures.loader.simple" class="Fidry\AliceDataFixtures\Loader\SimpleLoader" lazy="true">
+      <argument type="service" id="nelmio_alice.files_loader.simple"/>
+      <argument type="service" id="monolog.logger" on-invalid="ignore"/>
+    </service>
+    <service id="fidry_alice_data_fixtures.doctrine.purger_loader" class="Fidry\AliceDataFixtures\Loader\PurgerLoader" lazy="true">
+      <argument type="service" id="fidry_alice_data_fixtures.doctrine.persister_loader"/>
+      <argument type="service" id="fidry_alice_data_fixtures.persistence.doctrine.purger.purger_factory"/>
+      <argument>delete</argument>
+      <argument type="service" id="monolog.logger" on-invalid="ignore"/>
+    </service>
+    <service id="fidry_alice_data_fixtures.doctrine.persister_loader" class="Fidry\AliceDataFixtures\Loader\PersisterLoader" lazy="true">
+      <argument type="service" id="fidry_alice_data_fixtures.loader.simple"/>
+      <argument type="service" id="fidry_alice_data_fixtures.persistence.persister.doctrine.object_manager_persister"/>
+      <argument type="service" id="monolog.logger" on-invalid="ignore"/>
+      <argument type="collection"/>
+    </service>
+    <service id="fidry_alice_data_fixtures.persistence.doctrine.purger.purger_factory" class="Fidry\AliceDataFixtures\Bridge\Doctrine\Purger\Purger" lazy="true">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="fidry_alice_data_fixtures.persistence.purger_modepurger_mode" class="Fidry\AliceDataFixtures\Persistence\PurgeMode">
+      <factory class="Fidry\AliceDataFixtures\Persistence\PurgeMode" method="createDeleteMode"/>
+      <deprecated package="theofidry/alice-data-fixtures" version="1.0">The service "%service_id%" is deprecated and will be removed in future versions.Inject the purger or purger factory directly instead.</deprecated>
+    </service>
+    <service id="fidry_alice_data_fixtures.persistence.persister.doctrine.object_manager_persister" class="Fidry\AliceDataFixtures\Bridge\Doctrine\Persister\ObjectManagerPersister" lazy="true">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="hautelook_alice.locator.env_directory" class="Hautelook\AliceBundle\Locator\EnvDirectoryLocator">
+      <argument>%hautelook_alice.fixtures_path%</argument>
+      <argument>%hautelook_alice.root_dirs%</argument>
+    </service>
+    <service id="hautelook_alice.locator.environmentless" class="Hautelook\AliceBundle\Locator\EnvironmentlessFilesLocator">
+      <argument type="service" id="hautelook_alice.locator.env_directory"/>
+    </service>
+    <service id="hautelook_alice.data_fixtures.loader.file_resolver_loader" class="Fidry\AliceDataFixtures\Loader\FileResolverLoader">
+      <argument type="service" id="fidry_alice_data_fixtures.doctrine.purger_loader"/>
+      <argument type="service" id="hautelook_alice.resolver.file.kernel_file_resolver"/>
+    </service>
+    <service id="hautelook_alice.data_fixtures.purge_loader" class="Fidry\AliceDataFixtures\Loader\FileResolverLoader" public="true">
+      <argument type="service" id="fidry_alice_data_fixtures.doctrine.purger_loader"/>
+      <argument type="service" id="hautelook_alice.resolver.file.kernel_file_resolver"/>
+    </service>
+    <service id="hautelook_alice.data_fixtures.append_loader" class="Fidry\AliceDataFixtures\Loader\FileResolverLoader" public="true">
+      <argument type="service" id="fidry_alice_data_fixtures.doctrine.persister_loader"/>
+      <argument type="service" id="hautelook_alice.resolver.file.kernel_file_resolver"/>
+    </service>
+    <service id="hautelook_alice.loader.doctrine_orm_loader" class="Hautelook\AliceBundle\Loader\DoctrineOrmLoader">
+      <argument type="service" id="hautelook_alice.resolver.bundle.no_bundle_resolver"/>
+      <argument type="service" id="hautelook_alice.locator.environmentless"/>
+      <argument type="service" id="hautelook_alice.data_fixtures.purge_loader"/>
+      <argument type="service" id="hautelook_alice.data_fixtures.append_loader"/>
+      <argument type="service" id="monolog.logger" on-invalid="null"/>
+    </service>
+    <service id="hautelook_alice.console.command.doctrine.doctrine_orm_load_data_fixtures_command" class="Hautelook\AliceBundle\Console\Command\Doctrine\DoctrineOrmLoadDataFixturesCommand" public="true">
+      <tag name="console.command"/>
+      <tag name="container.no_preload"/>
+      <argument>hautelook:fixtures:load</argument>
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="hautelook_alice.loader.doctrine_orm_loader"/>
+      <call method="setName">
+        <argument>hautelook:fixtures:load</argument>
+      </call>
+    </service>
+    <service id="hautelook_alice.resolver.bundle.simple_resolver" class="Hautelook\AliceBundle\Resolver\Bundle\SimpleBundleResolver">
+      <argument type="service" id="kernel"/>
+    </service>
+    <service id="hautelook_alice.resolver.bundle.no_bundle_resolver" class="Hautelook\AliceBundle\Resolver\Bundle\NoBundleResolver">
+      <argument type="service" id="hautelook_alice.resolver.bundle.simple_resolver"/>
+    </service>
+    <service id="hautelook_alice.resolver.file.kernel_file_resolver" class="Hautelook\AliceBundle\Resolver\File\KernelFileResolver">
+      <argument type="service" id="kernel"/>
+    </service>
+    <service id="hautelook_alice.alice.generator.instantiator.chainable.instantiated_reference_instantiator" class="Hautelook\AliceBundle\Alice\Generator\Instantiator\Chainable\InstantiatedReferenceInstantiator">
+      <tag name="nelmio_alice.generator.instantiator.chainable_instantiator"/>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="hautelook_alice.alice.file_locator.kernel" class="Hautelook\AliceBundle\Alice\FileLocator\KernelFileLocator">
+      <argument type="service" id="nelmio_alice.file_locator.default"/>
+      <argument type="service" id="kernel"/>
+    </service>
+    <service id="liip_test_fixtures.services.fixtures_loader_factory" class="Liip\TestFixturesBundle\Services\FixturesLoaderFactory" public="true">
+      <argument type="service" id="service_container"/>
+      <argument>null</argument>
+    </service>
+    <service id="liip_test_fixtures.services_database_backup.sqlite" class="Liip\TestFixturesBundle\Services\DatabaseBackup\SqliteDatabaseBackup" public="true">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="liip_test_fixtures.services.fixtures_loader_factory"/>
+    </service>
+    <service id="liip_test_fixtures.services_database_backup.mysql" class="Liip\TestFixturesBundle\Services\DatabaseBackup\MysqlDatabaseBackup" public="true">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="liip_test_fixtures.services.fixtures_loader_factory"/>
+    </service>
+    <service id="liip_test_fixtures.services_database_backup.mongodb" class="Liip\TestFixturesBundle\Services\DatabaseBackup\MongodbDatabaseBackup" public="true">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="liip_test_fixtures.services.fixtures_loader_factory"/>
+    </service>
+    <service id="liip_test_fixtures.services_database_tools.orm_database_tool" class="Liip\TestFixturesBundle\Services\DatabaseTools\ORMDatabaseTool">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="liip_test_fixtures.services.fixtures_loader_factory"/>
+    </service>
+    <service id="liip_test_fixtures.services_database_tools.orm_sqlite_database_tool" class="Liip\TestFixturesBundle\Services\DatabaseTools\ORMSqliteDatabaseTool">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="liip_test_fixtures.services.fixtures_loader_factory"/>
+    </service>
+    <service id="liip_test_fixtures.services_database_tools.mongodb_database_tool" class="Liip\TestFixturesBundle\Services\DatabaseTools\MongoDBDatabaseTool">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="liip_test_fixtures.services.fixtures_loader_factory"/>
+    </service>
+    <service id="liip_test_fixtures.services_database_tools.phpcr_database_tool" class="Liip\TestFixturesBundle\Services\DatabaseTools\PHPCRDatabaseTool">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="liip_test_fixtures.services.fixtures_loader_factory"/>
+    </service>
+    <service id="liip_test_fixtures.services.database_tool_collection" class="Liip\TestFixturesBundle\Services\DatabaseToolCollection" public="true">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="annotations.reader"/>
+      <call method="add">
+        <argument type="service" id="liip_test_fixtures.services_database_tools.orm_database_tool"/>
+      </call>
+      <call method="add">
+        <argument type="service" id="liip_test_fixtures.services_database_tools.orm_sqlite_database_tool"/>
+      </call>
+      <call method="add">
+        <argument type="service" id="liip_test_fixtures.services_database_tools.mongodb_database_tool"/>
+      </call>
+      <call method="add">
+        <argument type="service" id="liip_test_fixtures.services_database_tools.phpcr_database_tool"/>
+      </call>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Action\Pruebas" class="App\Controller\Action\Pruebas" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Action\Pruebas" class="App\Controller\Action\Pruebas" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Action\Pruebas" class="App\Controller\Action\Pruebas" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6315,7 +6947,7 @@
     <service id=".errored..service_locator.TO3kXqK.App\Entity\User" class="App\Entity\User"/>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.KiDiGCR"/>
+      <argument type="service" id=".service_locator.4vaiYgj"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -6381,6 +7013,7 @@
         <argument key="lint:twig">twig.command.lint</argument>
         <argument key="lexik:jwt:check-config">lexik_jwt_authentication.check_config_command</argument>
         <argument key="lexik:jwt:generate-token">lexik_jwt_authentication.generate_token_command</argument>
+        <argument key="hautelook:fixtures:load">hautelook_alice.console.command.doctrine.doctrine_orm_load_data_fixtures_command</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:controller">maker.auto_command.make_controller</argument>
@@ -6405,7 +7038,7 @@
         <argument key="make:migration">maker.auto_command.make_migration</argument>
       </argument>
     </service>
-    <service id=".service_locator.KiDiGCR" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.4vaiYgj" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="Doctrine\DBAL\Tools\Console\Command\RunSqlCommand" type="service" id="Doctrine\DBAL\Tools\Console\Command\RunSqlCommand"/>
@@ -6466,6 +7099,7 @@
         <argument key="doctrine_migrations.up_to_date_command" type="service" id="doctrine_migrations.up_to_date_command"/>
         <argument key="doctrine_migrations.version_command" type="service" id="doctrine_migrations.version_command"/>
         <argument key="doctrine_migrations.versions_command" type="service" id="doctrine_migrations.versions_command"/>
+        <argument key="hautelook_alice.console.command.doctrine.doctrine_orm_load_data_fixtures_command" type="service" id="hautelook_alice.console.command.doctrine.doctrine_orm_load_data_fixtures_command"/>
         <argument key="lexik_jwt_authentication.check_config_command" type="service" id="lexik_jwt_authentication.check_config_command"/>
         <argument key="lexik_jwt_authentication.generate_token_command" type="service" id="lexik_jwt_authentication.generate_token_command"/>
         <argument key="maker.auto_command.make_auth" type="service" id="maker.auto_command.make_auth"/>
@@ -6783,6 +7417,50 @@
     <service id="lexik_jwt_authentication.encoder" alias="lexik_jwt_authentication.encoder.lcobucci" public="true"/>
     <service id="Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface" alias="lexik_jwt_authentication.encoder.lcobucci"/>
     <service id="lexik_jwt_authentication.key_loader" alias="lexik_jwt_authentication.key_loader.raw" public="true"/>
+    <service id="nelmio_alice.data_loader" alias="nelmio_alice.data_loader.simple" public="true"/>
+    <service id="nelmio_alice.file_loader" alias="nelmio_alice.file_loader.simple" public="true"/>
+    <service id="nelmio_alice.files_loader" alias="nelmio_alice.files_loader.simple" public="true"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser" alias="nelmio_alice.fixture_builder.denormalizer.flag_parser.element"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture_bag" alias="nelmio_alice.fixture_builder.denormalizer.fixture.simple_fixture_bag_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture" alias="nelmio_alice.fixture_builder.denormalizer.fixture.tolerant_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.specs" alias="nelmio_alice.fixture_builder.denormalizer.specs.simple"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor" alias="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.legacy_constructor_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.arguments" alias="nelmio_alice.fixture_builder.denormalizer.fixture.specs.arguments.simple_arguments_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value" alias="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.unique_value_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.property" alias="nelmio_alice.fixture_builder.denormalizer.fixture.specs.property.simple_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls" alias="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.simple_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser" alias="nelmio_alice.fixture_builder.expression_language.parser.token_parser.registry"/>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer" alias="nelmio_alice.fixture_builder.expression_language.lexer.empty_value_lexer"/>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser" alias="nelmio_alice.fixture_builder.expression_language.parser.function_fixture_reference_parser"/>
+    <service id="nelmio_alice.fixture_builder" alias="nelmio_alice.fixture_builder.simple"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer" alias="nelmio_alice.fixture_builder.denormalizer.simple"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.parameter_bag" alias="nelmio_alice.fixture_builder.denormalizer.parameter.simple_parameter_bag_denormalizer"/>
+    <service id="nelmio_alice.file_locator" alias="hautelook_alice.alice.file_locator.kernel"/>
+    <service id="nelmio_alice.generator.hydrator" alias="nelmio_alice.generator.hydrator.simple"/>
+    <service id="nelmio_alice.generator.hydrator.property" alias="nelmio_alice.generator.hydrator.property.symfony_property_access"/>
+    <service id="nelmio_alice.generator.resolver.parameter_bag" alias="nelmio_alice.generator.resolver.parameter_bag.remove_conflicting_parameters"/>
+    <service id="nelmio_alice.generator.resolver.value" alias="nelmio_alice.generator.resolver.value.registry"/>
+    <service id="nelmio_alice.generator.resolver.value.property_accessor" alias="property_accessor"/>
+    <service id="nelmio_alice.generator.resolver.fixture_bag" alias="nelmio_alice.generator.resolver.fixture_bag.template_bag"/>
+    <service id="nelmio_alice.generator.resolver.fixture_set" alias="nelmio_alice.generator.resolver.fixture_set.remove_conflicting_objects"/>
+    <service id="nelmio_alice.generator.instantiator" alias="nelmio_alice.generator.instantiator.existing_instance"/>
+    <service id="nelmio_alice.generator.caller" alias="nelmio_alice.generator.caller.simple"/>
+    <service id="nelmio_alice.generator" alias="nelmio_alice.generator.double_pass"/>
+    <service id="nelmio_alice.generator.object_generator" alias="nelmio_alice.generator.object_generator.complete"/>
+    <service id="nelmio_alice.file_parser" alias="nelmio_alice.file_parser.runtime_cache"/>
+    <service id="nelmio_alice.property_accessor" alias="nelmio_alice.property_accessor.std"/>
+    <service id="Faker\Generator" alias="nelmio_alice.faker.generator" public="true"/>
+    <service id="fidry_alice_data_fixtures.loader.doctrine" alias="fidry_alice_data_fixtures.doctrine.purger_loader" public="true"/>
+    <service id="fidry_alice_data_fixtures.doctrine.loader" alias="fidry_alice_data_fixtures.doctrine.purger_loader"/>
+    <service id="fidry_alice_data_fixtures.persistence.purger_factory.doctrine" alias="fidry_alice_data_fixtures.persistence.doctrine.purger.purger_factory" public="true"/>
+    <service id="fidry_alice_data_fixtures.persistence.purger.doctrine.orm_purger" alias="fidry_alice_data_fixtures.persistence.doctrine.purger.purger_factory">
+      <deprecated package="theofidry/alice-data-fixtures" version="1.0">The service alias "%alias_id%" is deprecated and will be removed in future versions.Use "fidry_alice_data_fixtures.persistence.doctrine.purger.purger_factory" instead.</deprecated>
+    </service>
+    <service id="fidry_alice_data_fixtures.persistence.persister.doctrine" alias="fidry_alice_data_fixtures.persistence.persister.doctrine.object_manager_persister" public="true"/>
+    <service id="hautelook_alice.locator" alias="hautelook_alice.locator.environmentless" public="true"/>
+    <service id="hautelook_alice.loader" alias="hautelook_alice.loader.doctrine_orm_loader" public="true"/>
+    <service id="hautelook_alice.resolver.bundle" alias="hautelook_alice.resolver.bundle.no_bundle_resolver" public="true"/>
+    <service id="hautelook_alice.resolver.file" alias="hautelook_alice.resolver.file.kernel_file_resolver" public="true"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.Kbr2i2X" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator.UWJzpLL"/>

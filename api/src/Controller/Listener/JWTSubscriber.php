@@ -35,8 +35,7 @@ class JWTSubscriber implements EventSubscriberInterface
         return [
             Events::JWT_CREATED => 'onJWTCreated',
             Events::JWT_AUTHENTICATED => 'onAuthenticatedAccess',
-            KernelEvents::RESPONSE => 'onAuthenticatedResponse',
-            Events::AUTHENTICATION_FAILURE => 'onAuthenticatedFail'
+            KernelEvents::RESPONSE => 'onAuthenticatedResponse'
         ];
     }
 
@@ -54,11 +53,9 @@ class JWTSubscriber implements EventSubscriberInterface
 
     public function onAuthenticatedResponse(ResponseEvent $event): void
     {
-        if($this->payload && $this->user)
-        {
+        if ($this->payload && $this->user) {
             $expireTime = $this->payload['exp'] - time();
-            if($expireTime < static::REFRESH_TIME)
-            {
+            if ($expireTime < static::REFRESH_TIME) {
                 $jwt = $this->jwtManager->create($this->user);
                 $response = $event->getResponse();
 
@@ -81,19 +78,5 @@ class JWTSubscriber implements EventSubscriberInterface
     {
         $this->payload = $event->getPayload();
         $this->user = $event->getToken()->getUser();
-    }
-
-    public function onAuthenticatedFail(AuthenticationFailureEvent $event): void
-    {
-        $data = [
-            'class' => 'App\\Exceptions\\WrongCredentials',
-            'status'  => '401 Unauthorized',
-            'message' => 'Bad credentials',
-        ];
-
-        $response = new JsonResponse();
-        $response->setData($data);
-
-        $event->setResponse($response);
     }
 }

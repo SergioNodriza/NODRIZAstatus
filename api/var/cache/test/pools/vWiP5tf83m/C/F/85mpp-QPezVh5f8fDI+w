@@ -1,0 +1,57 @@
+<?php //App_Entity_Product
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Symfony\\Component\\Serializer\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Serializer\\Mapping\\ClassMetadata')),
+        clone ($p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata')),
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+        clone $p['Symfony\\Component\\Serializer\\Mapping\\AttributeMetadata'],
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\Product',
+                'id',
+                'name',
+                'state',
+                'services',
+                'createdAt',
+                'updatedAt',
+            ],
+            'attributesMetadata' => [
+                [
+                    'id' => $o[1],
+                    'name' => $o[2],
+                    'state' => $o[3],
+                    'services' => $o[4],
+                    'createdAt' => $o[5],
+                    'updatedAt' => $o[6],
+                ],
+            ],
+            'groups' => [
+                1 => [
+                    'product_read',
+                ],
+                [
+                    'product_read',
+                    'product_post',
+                ],
+                [
+                    'product_read',
+                ],
+                5 => [
+                    'product_read',
+                ],
+                [
+                    'product_read',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

@@ -21,7 +21,7 @@ App\Entity\User:
 
     login:
       method: POST
-      path: /api/users/login
+      path: /users/login
       openapi_context:
         summary: Login a User
         requestBody:

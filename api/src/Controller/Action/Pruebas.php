@@ -244,4 +244,28 @@ class Pruebas extends AbstractController
 
         return (new Response($id));
     }
+
+    /**
+     * @Route("/12", name="pruebas")
+     * @return Response
+     */
+    public function tryArrayArray(): Response
+    {
+        $array2 = [
+            'name' => 'Bearer',
+            'code' => 'Code'
+        ];
+
+        $array3 = [
+            'name' => 'Bearer',
+            'code' => 'Code'
+        ];
+
+        $array1 = [
+            $array2,
+            $array3
+        ];
+
+        return (new Response($array1[0]['name']));
+    }
 }

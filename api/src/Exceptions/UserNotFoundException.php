@@ -3,9 +3,9 @@
 
 namespace App\Exceptions;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
-class UserNotFoundException extends NotFoundHttpException
+class UserNotFoundException extends UsernameNotFoundException
 {
     private const MESSAGE = 'User with name %s not found';
 

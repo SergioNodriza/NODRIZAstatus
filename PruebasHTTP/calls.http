@@ -1,7 +1,19 @@
 #################################### USERS #########################################
 
 POST http://localhost:350/api/users/create
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDk4MzQ3MTgsImV4cCI6MTYxNTAxODcxOCwidXNlcm5hbWUiOiJBZG1pbiIsImlkIjoiMTg0YTMxMmMtZmYxZi00ZmNmLWIyZTktZDA5OTM4ZjIxN2RmIn0.Q608PyjMEi4gBInCXmJtgspRgTzlbLnxTz5eUjdhfMpoxCXoI4X6XNOL_8BB9Ni-Yl3RfxnuARqDhc3I5K4xHitKeLoiha2Mvay-mnfIHr4Tvnc5qyvRaSqFEAbpCiJl7kGAcLcDq2A_3-zG4O-ZznamdlirHcLWEYrMjnfsTs56m8ALUePM7z1qMERx5myki39YsCzqjg7-OY-TyKU73SPYpfPd3Omu2zoZrn9s6TrsYr2NUZHiFb7InOw_WhTPY3CfJN289XeRLP45om89Rp1fUGnpoBVzrIKtnNzgRIFFMX6SHPGBYV3uyq5b0fTBDnsFfxVWfnsbn3YnK4QtYDEc0bE35BstH5V-JOIcKBB-byAy5PTiKXEpuOwLP-hUl-vW0OneAkgMdN1U0POby3BcjPaF43WP8dVQgLLJIRX57kB6jqU6s8jxdO-Z8BYh2fExGDawxQUIXY2AJF_uuYq6T1aP2TWOjwEqlNLp-4Viu1xC_0N8J2nSLjCuOr5hqTRmP5agMdbDAQ5wneJyBrvznePFHiLmUWLDAaTD8YLxroFTZOu1XYRgirgQkosfFvPrHrcpNEHriEsXquZeGMKdvTT07Jcrt8RNrPFMXBHmE86_LMsX0BQbBakqY7d79Toq94voi_kguZQBUQ4L1-930Ze6Htn3ynYk_y6Q5bI
+Content-Type: application/json
+
+{
+  "name": "Admin",
+  "password": "Nodriza@01@Admin",
+  "roles": [
+    "ROLE_ADMIN"
+  ]
+}
+
+####################
+
+POST http://localhost:350/api/users/create
 Content-Type: application/json
 
 {
@@ -34,7 +46,7 @@ Content-Type: application/json
 
 ####################
 
-GET http://localhost:350/api/users/184a312c-ff1f-4fcf-b2e9-d09938f217df
+GET http://localhost:350/api/users/c7c5371d-1a5e-4f4b-aefd-5bdfb8cc8454
 
 ####################
 

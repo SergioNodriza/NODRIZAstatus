@@ -1,2 +1,2 @@
-CREATE DATABASE IF NOT EXISTS nodriza-status-db_test;
-GRANT ALL PRIVILEGES ON nodriza-status-db_test.* TO 'root' IDENTIFIED BY 'root';
+create schema `nodriza-status_db_test`;
+-- GRANT ALL PRIVILEGES ON nodriza-status_db-test.* TO 'user' IDENTIFIED BY 'user';
