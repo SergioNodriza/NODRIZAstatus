@@ -66,11 +66,6 @@ security:
             methods: [ GET ]
             security: false
 
-#        register:
-#            pattern: ^/api/users/create
-#            methods: [ POST ]
-#            security: false
-
         login:
             pattern: ^/api/users/login
             stateless: true

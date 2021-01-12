@@ -189,8 +189,6 @@ return [[
 '%5B%5BC%5DApp%5CController%5CListener%5CJWTSubscriber%23onAuthenticatedResponse%5D%5B1%5D' => 2,
 '%5BApp%5CController%5CListener%5CJWTSubscriber%23onAuthenticatedAccess%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CController%5CListener%5CJWTSubscriber%23onAuthenticatedAccess%5D%5B1%5D' => 2,
-'%5BApp%5CController%5CListener%5CJWTSubscriber%23onAuthenticatedFail%5D%5B1%5D' => 1,
-'%5B%5BC%5DApp%5CController%5CListener%5CJWTSubscriber%23onAuthenticatedFail%5D%5B1%5D' => 2,
 '%5BApp%5CController%5CListener%5CJWTSubscriber%24payload%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CController%5CListener%5CJWTSubscriber%24payload%5D%5B1%5D' => 2,
 '%5BApp%5CController%5CListener%5CJWTSubscriber%24user%5D%5B1%5D' => 1,
@@ -962,7 +960,7 @@ return [[
 
 0 => 'N;',
 1 => [],
-2 => 1610103103,
+2 => 1610436183,
 3 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [

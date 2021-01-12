@@ -1,0 +1,3 @@
+<?php //route_name_40880fa39e602a3491dd13c586444410
+
+return [PHP_INT_MAX, 'api_incidents_services_get_subresource'];

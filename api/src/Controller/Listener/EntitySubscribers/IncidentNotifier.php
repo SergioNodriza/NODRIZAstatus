@@ -10,7 +10,6 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
-use phpDocumentor\Reflection\Types\Nullable;
 
 class IncidentNotifier implements EventSubscriber
 {

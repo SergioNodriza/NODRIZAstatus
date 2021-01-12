@@ -40,8 +40,8 @@ GET http://localhost:350/api/users/login
 Content-Type: application/json
 
 {
-  "username": "PruebaUsuario2",
-  "password": "PruebaContraseña2!"
+  "username": "Peter",
+  "password": "password"
 }
 
 ####################
@@ -116,7 +116,7 @@ Content-Type: application/json
 
 {
   "name": "PruebaService",
-  "product": "/api/products/8dd2a4a9-8342-4f17-9d94-a4b62dd34978"
+  "product": "/api/products/0d50d0c0-f29a-4f2f-8eb5-0dfe5e79196d"
 }
 
 ####################
@@ -134,7 +134,7 @@ DELETE http://localhost:350/api/services/1572231b-8461-4fdf-b759-972a61a00c8f
 
 ####################
 
-GET http://localhost:350/api/services/1572231b-8461-4fdf-b759-972a61a00c8f
+GET http://localhost:350/api/services/522ea4dd-60d0-4f2d-96f8-8b21f0787b70
 
 ####################
 
@@ -142,7 +142,7 @@ GET http://localhost:350/api/services
 
 ####################
 
-GET http://localhost:350/api/services/1572231b-8461-4fdf-b759-972a61a00c8f/incidents
+GET http://localhost:350/api/services/5cf4ab03-f713-4fcd-9af6-0bca26abc721/incidents
 
 ####################
 
@@ -158,12 +158,12 @@ POST http://localhost:350/api/incidents/create
 Content-Type: application/json
 
 {
-  "name": "PruebaIncident",
+  "name": "PruebaIncident2",
   "information": "info",
   "state": "En investigación",
-  "gravity": "Baja",
+  "gravity": "Media",
   "services": [
-    "/api/services/1572231b-8461-4fdf-b759-972a61a00c8f"
+    "/api/services/08e52164-e5a6-4fff-ade1-0795f6a73d5f"
   ]
 }
 
@@ -173,22 +173,23 @@ GET http://localhost:350/api/incidents/74b6ad85-8f54-4fcd-b7f2-7614ad1d642d
 
 ####################
 
-PUT http://localhost:350/api/incidents/74b6ad85-8f54-4fcd-b7f2-7614ad1d642d
+PUT http://localhost:350/api/incidents/3605d114-63de-4f34-a50f-f00294d183be
 Content-Type: application/json
 
 {
-  "name": "PruebaIncident2",
+  "name": "PruebaIncident",
   "information": "info",
   "state": "En investigación",
-  "gravity": "Baja",
+  "gravity": "Media",
   "services": [
-    "/api/services/1572231b-8461-4fdf-b759-972a61a00c8f"
+    "/api/services/08e52164-e5a6-4fff-ade1-0795f6a73d5f",
+    "/api/services/33c08af3-ae85-4f43-b13c-a7a2ca228010"
   ]
 }
 
 ####################
 
-DELETE http://localhost:350/api/incidents/74b6ad85-8f54-4fcd-b7f2-7614ad1d642d
+DELETE http://localhost:350/api/incidents/7167f988-6ead-4f07-b4ad-c005aa608e29
 
 ####################
 

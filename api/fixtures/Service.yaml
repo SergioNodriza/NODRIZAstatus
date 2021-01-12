@@ -1,0 +1,7 @@
+App\Entity\Service:
+  Service-0:
+    name: TestService
+    product: '@Product-0'
+  Service-1:
+    name: TestService2
+    product: '@Product-0'

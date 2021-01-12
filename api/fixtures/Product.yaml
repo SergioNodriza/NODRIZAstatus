@@ -1,0 +1,4 @@
+App\Entity\Product:
+  Product-0:
+    name: TestProduct
+    state: Funcional
