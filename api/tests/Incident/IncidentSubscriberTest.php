@@ -4,9 +4,11 @@
 namespace App\Tests\Incident;
 
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 class IncidentSubscriberTest extends IncidentTestBase
 {
-    public function testCreateAndUpdate2Services(): void
+    public function testIncidentIn2Services(): void
     {
         $gravity = ["Baja", "Media", "Crítica"];
         $serviceState = ["Advertencias Leves", "Advertencias Leves", "Error"];
@@ -186,5 +188,38 @@ class IncidentSubscriberTest extends IncidentTestBase
         $jsonService = json_decode($response->getContent(), true);
 
         self::assertSame($jsonService['state'], $serviceState[1]);
+    }
+
+    public function testFixByDelete(): void
+    {
+        $payload = [
+            "name" => "TestIncidentDelete",
+            "information" => "Información",
+            "state" => "En investigación",
+            "gravity" => "Crítica",
+            "services" => [
+                sprintf("/api/services/%s", $this->getServiceId())
+            ]
+        ];
+
+        self::$peter->request('POST', sprintf("%s/create", $this->endpoint), [], [], [], json_encode($payload));
+        $response = self::$peter->getResponse();
+        $jsonIncident = json_decode($response->getContent(), true);
+        $id = $jsonIncident['id'];
+        self::assertSame($jsonIncident["@type"], "Incident");
+
+        self::$peter->request('GET', sprintf("/api/services/%s", $this->getServiceId()), [], [], [], null);
+        $response = self::$peter->getResponse();
+        $jsonService = json_decode($response->getContent(), true);
+        self::assertSame($jsonService["state"], "Error");
+
+        self::$peter->request('DELETE', sprintf("/api/incidents/%s", $id), [], [], [], null);
+        $response = self::$peter->getResponse();
+        self::assertSame(JsonResponse::HTTP_NO_CONTENT, $response->getStatusCode());
+
+        self::$peter->request('GET', sprintf("/api/services/%s", $this->getServiceId()), [], [], [], null);
+        $response = self::$peter->getResponse();
+        $jsonService2 = json_decode($response->getContent(), true);
+        self::assertSame($jsonService2["state"], "Funcional");
     }
 }
