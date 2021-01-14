@@ -40,16 +40,6 @@ class User implements UserInterface
      */
     private $roles = [];
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
-
     public function __construct()
     {
         $this->id = Uuid::v4()->toRfc4122();
