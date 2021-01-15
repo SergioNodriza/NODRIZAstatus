@@ -163,13 +163,13 @@ Content-Type: application/json
   "state": "En investigación",
   "gravity": "Media",
   "services": [
-    "/api/services/08e52164-e5a6-4fff-ade1-0795f6a73d5f"
+    "/api/services/d1d424b3-3ab8-4f1e-9937-16412a7c79cc"
   ]
 }
 
 ####################
 
-GET http://localhost:350/api/incidents/74b6ad85-8f54-4fcd-b7f2-7614ad1d642d
+GET http://localhost:350/api/incidents/f00bf14a-16bd-4fbe-93ea-0ca9f423dfb9.json
 
 ####################
 

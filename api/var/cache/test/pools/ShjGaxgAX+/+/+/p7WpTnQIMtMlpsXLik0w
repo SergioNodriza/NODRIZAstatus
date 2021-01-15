@@ -1,3 +1,0 @@
-<?php //route_name_ab3c53c50e53ae7633936c7c5b9842c6
-
-return [PHP_INT_MAX, 'api_products_services_get_subresource'];

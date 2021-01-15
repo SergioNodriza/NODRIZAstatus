@@ -16,6 +16,6 @@ if (!\class_exists(App_KernelTestDebugContainer::class, false)) {
 
 return new \ContainerZdnuNSE\App_KernelTestDebugContainer([
     'container.build_hash' => 'ZdnuNSE',
-    'container.build_id' => 'f3de90c4',
-    'container.build_time' => 1610437230,
+    'container.build_id' => '20a6057c',
+    'container.build_time' => 1610615813,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerZdnuNSE');

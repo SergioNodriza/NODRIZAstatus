@@ -52,3 +52,14 @@ fc7782,172.25.0.1,GET,http://localhost:350/api/users/login,1610610935,,200
 0dc4c9,172.25.0.1,GET,http://localhost:350/api/users/login,1610610959,,200
 5b3218,172.25.0.1,GET,http://localhost:350/api/users/login,1610610970,,204
 bccf01,172.25.0.1,GET,http://localhost:350/api/users/login,1610610984,,204
+2f5cfa,172.25.0.1,GET,http://localhost:350/api,1610695991,,200
+df394c,172.25.0.1,GET,http://localhost:350/api/products,1610706629,,200
+209db6,172.25.0.1,GET,http://localhost:350/api/users/login,1610707271,,204
+b6bc83,172.25.0.1,POST,http://localhost:350/api/incidents/create,1610707305,,201
+73a565,172.25.0.1,GET,http://localhost:350/api/incidents/f00bf14a-16bd-4fbe-93ea-0ca9f423dfb9,1610707342,,200
+f9326b,172.25.0.1,GET,http://localhost:350/api/incidents/f00bf14a-16bd-4fbe-93ea-0ca9f423dfb9.json,1610707429,,200
+735abc,172.25.0.1,GET,http://localhost:350/api/incidents/f00bf14a-16bd-4fbe-93ea-0ca9f423dfb9.yaml,1610708086,,404
+c36328,172.25.0.1,GET,http://localhost:350/api/incidents/f00bf14a-16bd-4fbe-93ea-0ca9f423dfb9,1610708105,,200
+2c30c0,172.25.0.1,GET,http://localhost:350/api/incidents/f00bf14a-16bd-4fbe-93ea-0ca9f423dfb9,1610708228,,200
+264a53,172.25.0.1,GET,http://localhost:350/api/incidents/f00bf14a-16bd-4fbe-93ea-0ca9f423dfb9.json,1610708261,,200
+e0af0d,172.25.0.1,GET,http://localhost:350/api/incidents/f00bf14a-16bd-4fbe-93ea-0ca9f423dfb9.json,1610708314,,200
