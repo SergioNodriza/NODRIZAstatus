@@ -138,7 +138,7 @@ GET http://localhost:350/api/services/522ea4dd-60d0-4f2d-96f8-8b21f0787b70
 
 ####################
 
-GET http://localhost:350/api/services
+GET http://localhost:350/api/services.jsonld
 
 ####################
 
@@ -169,7 +169,7 @@ Content-Type: application/json
 
 ####################
 
-GET http://localhost:350/api/incidents/f00bf14a-16bd-4fbe-93ea-0ca9f423dfb9.json
+GET http://localhost:350/api/incidents/f00bf14a-16bd-4fbe-93ea-0ca9f423dfb9
 
 ####################
 
