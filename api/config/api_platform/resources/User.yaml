@@ -3,6 +3,14 @@ App\Entity\User:
     normalization_context:
       groups: [user_read]
   collectionOperations:
+
+    userInfo:
+      method: GET
+      path: /users/info
+      controller: App\Controller\Action\User\InfoUser
+      openapi_context:
+        summary: Logged User Information
+
     get:
       method: GET
       security: is_granted("USER_READ")
