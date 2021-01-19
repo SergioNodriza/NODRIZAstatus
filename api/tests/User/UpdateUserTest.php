@@ -9,7 +9,7 @@ class UpdateUserTest extends UserTestBase
     public function testUpdateUser(): void
     {
         $name = "TestUsuario2";
-        $rol = "ROLE_EMPRESA_Tuup";
+        $rol = "ROLE_EMPRESA";
 
         $payload = [
             "name" => $name,
@@ -33,7 +33,7 @@ class UpdateUserTest extends UserTestBase
             "name" => "TestUsuario2",
             "password" => "TestContraseña1!",
             "roles" => [
-                "ROLE_EMPRESA_Tuup"
+                "ROLE_EMPRESA"
             ]
         ];
 

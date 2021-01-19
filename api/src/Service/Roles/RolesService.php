@@ -5,7 +5,7 @@ namespace App\Service\Roles;
 class RolesService
 {
     private const ADMIN = "ROLE_ADMIN";
-    private const BUSINESS = "ROLE_EMPRESA_";
+    private const BUSINESS = "ROLE_EMPRESA";
     private const USER_PERMISSIONS = ["USER_CREATE", "USER_READ", "USER_UPDATE", "USER_DELETE"];
     private const PRODUCT_PERMISSIONS = ["PRODUCT_CREATE", "PRODUCT_READ", "PRODUCT_UPDATE", "PRODUCT_DELETE"];
     private const SERVICE_PERMISSIONS = ["SERVICE_CREATE", "SERVICE_READ", "SERVICE_UPDATE", "SERVICE_DELETE"];
@@ -17,10 +17,6 @@ class RolesService
         $permissions = [];
 
         foreach ($roles as $rol) {
-
-            if (str_starts_with($rol, self::BUSINESS)) {
-                $rol = self::BUSINESS;
-            }
 
             switch($rol) {
                 case self::ADMIN:

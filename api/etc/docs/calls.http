@@ -20,7 +20,7 @@ Content-Type: application/json
   "name": "PruebaUsuario2",
   "password": "PruebaContraseña2!",
   "roles": [
-    "ROLE_EMPRESA_Tuup"
+    "ROLE_EMPRESA"
   ]
 }
 

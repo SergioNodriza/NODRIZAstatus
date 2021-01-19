@@ -9,4 +9,4 @@ App\Entity\User:
   User-1:
     name: Brian
     password: <{testing_password_hash}>
-    roles: [ ROLE_EMPRESA_TUUP ]
+    roles: [ ROLE_EMPRESA ]

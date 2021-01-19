@@ -9,7 +9,7 @@ class CreateUserTest extends UserTestBase
     public function testCreateUser(): void
     {
         $name = "TestUsuario";
-        $rol = "ROLE_EMPRESA_Tuup";
+        $rol = "ROLE_EMPRESA";
 
         $payload = [
             "name" => $name,
@@ -33,7 +33,7 @@ class CreateUserTest extends UserTestBase
             "name" => "TestUsuario",
             "password" => "TestContraseña1!",
             "roles" => [
-                "ROLE_EMPRESA_Tuup"
+                "ROLE_EMPRESA"
             ]
         ];
 
@@ -53,7 +53,7 @@ class CreateUserTest extends UserTestBase
             "name" => $name,
             "password" => "TestContraseña1!",
             "roles" => [
-                "ROLE_EMPRESA_Tuup"
+                "ROLE_EMPRESA"
             ]
         ];
 
@@ -89,7 +89,7 @@ class CreateUserTest extends UserTestBase
                 "name" => "TestUsuario" . $i,
                 "password" => $password[$i],
                 "roles" => [
-                    "ROLE_EMPRESA_Tuup"
+                    "ROLE_EMPRESA"
                 ]
             ];
 
